@@ -1,9 +1,5 @@
 eclipse.preferences.version=1
-encoding//WebContent/accueilBanqueTest.html=UTF-8
-encoding//WebContent/listeOperations.jsp=UTF-8
-encoding//src/fr/dauphine/mido/as/banquetest/beans=UTF-8
-encoding//src/fr/dauphine/mido/as/banquetest/beans/Compte.java=UTF-8
-encoding//src/fr/dauphine/mido/as/banquetest/beans/Operation.java=UTF-8
-encoding//src/fr/dauphine/mido/as/banquetest/web/ServletPrincipal.java=UTF-8
+encoding//WebContent/META-INF/5accueilBanqueTest.html=UTF-8
+encoding//src/marchesecondaire/project/servlet/ServletAccueil.java=UTF-8
 encoding/<project>=UTF-8
 encoding/WebContent=UTF-8
