@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
+<h:head>
+	<h:outputStylesheet library='css' name='main.css' />
+</h:head>
+<h:body>
+	<p>Login to access secure pages:</p>
+	<h:form>
+         <fieldset>
+         	<legend>Login</legend>
+	     	<h:outputLabel for="login">Login <span class="requis">*</span></h:outputLabel>
+	        <h:inputText id="login" value="#{adminMB.user.login}" required="true" size="20" maxlength="60" />
+	        <h:message id="Login" for="login" errorClass="erreur" />
+	        <br />
+	
+	        <h:outputLabel for="password">Mot de passe <span class="requis">*</span></h:outputLabel>
+	        <h:inputSecret id="password" value="#{adminMB.user.password}" required="true" size="20" maxlength="20" />
+	        <h:message id="Password" for="password" errorClass="erreur" />
+	        <br />
+	
+	        <h:messages globalOnly="true" infoClass="info" />
+	
+	        <h:commandButton value="Inscription" action="#{adminMB.login}" styleClass="sansLabel" />
+	        <br />
+          </fieldset>
+        </h:form> 	
+
+</h:body>
+</html>
