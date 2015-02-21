@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.embeddable.EJBContainer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -23,35 +24,13 @@ import project.miageif.services.AdministrateurService;
 @ManagedBean
 @RequestScoped
 public class AdministrateurTest {
-	private Administrateur user;
-	@EJB
-	private AdministrateurService userFacade;
 	
-	private static EJBContainer    ejbContainer;
-	 private static Context        ctx;
-	 
-	 @BeforeClass
-	 public static void setUp() {
-	 ejbContainer = EJBContainer.createEJBContainer();
-	 ctx = ejbContainer.getContext();
-	 }
-	 
-	 @AfterClass
-	 public static void tearDown() {
-	 ejbContainer.close();
-	 }
+	@Inject
+	private Administrateur user = new Administrateur();
 	
 	 @Test
 	 public void test() {
-	 try {
-	 user = (Administrateur) ctx.lookup("java:jboss/datasources/MARCHE_SECONDAIRE");
-	 assertNotNull(user);
-	 //List<UserBean> users = userEJB.findAll();
-	 //assertNotNull(users);
-	 assertEquals(0, user.getId());
-	 } catch (NamingException e) {
-	 throw new AssertionError(e);
-	 }
+		 assertEquals(0, user.getId());
 	 }
 
 }
