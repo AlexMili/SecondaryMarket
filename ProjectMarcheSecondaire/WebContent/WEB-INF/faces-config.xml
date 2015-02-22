@@ -7,6 +7,12 @@
 
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
 			<redirect />
@@ -43,22 +49,22 @@
 			<to-view-id>/pages/protected/admin/deleteDog.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<!-- Navigation controleur -->
-	<navigation-rule>
-		<from-view-id>/acceuil.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{navigationController.pageAcceuil}</from-action>
-			<from-outcome>pages</from-outcome>
-			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-action>#{navigationController.pageLogin}</from-action>
-			<from-outcome>page</from-outcome>
-			<to-view-id>/pages/public/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
+	<!-- <navigation-rule> -->
+	<!-- <from-view-id>/acceuil.xhtml</from-view-id> -->
+	<!-- <navigation-case> -->
+	<!-- <from-action>#{navigationController.pageAcceuil}</from-action> -->
+	<!-- <from-outcome>pages</from-outcome> -->
+	<!-- <to-view-id>/pages/public/accueil.xhtml</to-view-id> -->
+	<!-- </navigation-case> -->
+	<!-- <navigation-case> -->
+	<!-- <from-action>#{navigationController.pageLogin}</from-action> -->
+	<!-- <from-outcome>page</from-outcome> -->
+	<!-- <to-view-id>/pages/public/login.xhtml</to-view-id> -->
+	<!-- </navigation-case> -->
+	<!-- </navigation-rule> -->
+
 	<!-- messages.properties -->
 	<application>
 		<resource-bundle>

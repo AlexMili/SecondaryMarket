@@ -2,9 +2,9 @@
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#accueil.xhtml"
-    NAME="output" PATH="/pages/public/accueil.xhtml"
-    TARGET="rules:#pages#public#accueil.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="login::#pages#public#login.xhtml"
+    NAME="output" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
@@ -51,8 +51,6 @@
   PATH="/pages/protected/admin/configuration.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#pages#public#accueil.xhtml"
   PATH="/pages/public/accueil.xhtml" SHAPE="256,593,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#pages#public#login.xhtml"
-  PATH="/pages/public/login.xhtml" SHAPE="256,737,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::5" SHAPE="32,721,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -64,20 +62,6 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#public#loginError.xhtml"
   PATH="/pages/public/loginError.xhtml" SHAPE="240,849,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#acceuil.xhtml" PATH="/acceuil.xhtml"
-  SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#acceuil.xhtml:0" NAME="item"
-   PATH="/acceuil.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="pages:#{navigationController.pageAcceuil}:#pages#public#accueil.xhtml"
-    NAME="output" PATH="/pages/public/accueil.xhtml"
-    TARGET="rules:#pages#public#accueil.xhtml"
-    TITLE="#{navigationController.pageAcceuil}:pages" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="page:#{navigationController.pageLogin}:#pages#public#login.xhtml"
-    NAME="output1" PATH="/pages/public/login.xhtml"
-    TARGET="rules:#pages#public#login.xhtml"
-    TITLE="#{navigationController.pageLogin}:page" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#login.xhtml"
+  PATH="/pages/public/login.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

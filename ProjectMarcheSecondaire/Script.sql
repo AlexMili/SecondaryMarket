@@ -5,4 +5,4 @@ CREATE TABLE IF NOT EXISTS `ADMINISTRATEUR` (
   PRIMARY KEY(`Id_Administrateur`)
 );
 
-INSERT INTO `ADMINISTRATEUR` (`Id_Administrateur`, `login`, `password`) VALUES (NULL, 'test', 'test');
+INSERT INTO `ADMINISTRATEUR` (`Id_Administrateur`, `login`, `password`) VALUES (NULL, 'yann', 'yann');
