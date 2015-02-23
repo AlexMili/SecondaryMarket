@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ADMINISTRATEUR")
@@ -20,13 +23,15 @@ public class Administrateur {
 	
 	public static final String FIND_BY_ID = "Administrateur.findUserByLoginPass";
 	
-	@Id
+	@Id @NotNull @Size(min=1, max=2)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Id_Administrateur")
 	private int id;
-
+	
+	@NotNull
 	private String login;
 	//@Column(name="password")
+	@NotNull
 	private String password;
 
 	public Administrateur() {
@@ -37,6 +42,9 @@ public class Administrateur {
 		return getId();
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}
