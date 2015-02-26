@@ -5,22 +5,27 @@
 	xmlns:h='http://java.sun.com/jsf/html'
 	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
-	<h:outputStylesheet library='css' name='main.css' />
+	<title>Bienvenu sur notre site -- Rainbow marché de secondaire</title>
+	<h:outputStylesheet library='css' name='accueil.css' />
 </h:head>
 <h:body>
-	<p>Page d'accueil</p>
+	<p>Bienvenu sur notre site -- Rainbow marché de secondaire</p>
+	<h:graphicImage library="images" value="/resources/images/rainbow.jpg" >
+	<f:attribute name="height" value="100"/>   
+    <f:attribute name="width" value="100"/>
+    </h:graphicImage> 
 	<h:form>
-		<h:commandLink action="#{navigationController.showPage}" value="Login">
+		<h:commandButton action="#{navigationController.showPage}" value="Login">
 			<f:param name="pageId" value="login" />
-		</h:commandLink>
+		</h:commandButton>
 		<br/>
-		<h:commandLink action="#{navigationController.showPage}" value="Inscription d'une Société">
+		<h:commandButton action="#{navigationController.showPage}" value="Inscription d'une Société">
 			<f:param name="pageId" value="inscriptionSociete" />
-		</h:commandLink>
+		</h:commandButton>
 		<br/>
-		<h:commandLink action="#{navigationController.showPage}" value="Autre">
+		<h:commandButton action="#{navigationController.showPage}" value="Autre">
 			<f:param name="pageId" value="3" />
-		</h:commandLink>
+		</h:commandButton>
 	</h:form>
 </h:body>
 </html>

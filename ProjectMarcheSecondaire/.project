@@ -46,4 +46,16 @@
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>WebContent/resources/images/rainbow.jpg</name>
+			<type>1</type>
+			<location>C:/Users/SONY/Desktop/rainbow.jpg</location>
+		</link>
+		<link>
+			<name>WebContent/resources/images/rich-kid.jpg</name>
+			<type>1</type>
+			<location>C:/Users/SONY/Desktop/rich-kid.jpg</location>
+		</link>
+	</linkedResources>
 </projectDescription>
