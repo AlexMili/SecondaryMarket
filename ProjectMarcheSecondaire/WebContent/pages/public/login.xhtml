@@ -1,33 +1,43 @@
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
-  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'
 	xmlns:f='http://java.sun.com/jsf/core'
 	xmlns:h='http://java.sun.com/jsf/html'
 	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
-	<h:outputStylesheet library='css' name='main.css' />
+	<title>Connexion</title>
+		<h:outputStylesheet library='css' name='login.css' />
 </h:head>
 <h:body>
-	<p>Login to access secure pages:</p>
-	<h:form>
-         <fieldset>
-         	<legend>Login</legend>
-	     	<h:outputLabel for="login">Login <span class="requis">*</span></h:outputLabel>
-	        <h:inputText id="login" value="#{adminMB.user.login}" required="true" size="20" maxlength="60" />
-	        <h:message id="Login" for="login" errorClass="erreur" />
-	        <br />
-	
-	        <h:outputLabel for="password">Mot de passe <span class="requis">*</span></h:outputLabel>
-	        <h:inputSecret id="password" value="#{adminMB.user.password}" required="true" size="20" maxlength="20" />
-	        <h:message id="Password" for="password" errorClass="erreur" />
-	        <br />
-	
-	        <h:messages globalOnly="true" infoClass="info" />
-	
-	        <h:commandButton value="Inscription" action="#{adminMB.login}" styleClass="sansLabel" />
-	        <br />
-          </fieldset>
-        </h:form> 	
+<h:outputScript target="body">
+        addEventListener("load", function(){
+	var inputs, index;
 
+inputs = document.getElementsByTagName('input');
+    inputs[1].value = "Nom d'utilisateur";
+    inputs[2].value = "Password";
+});
+</h:outputScript>
+	 <div class="main">
+		<div class="login-form">
+			<h1>Connexion</h1>
+					<div class="head">
+						<h:graphicImage library="images" value="/resources/images/user.png" />
+					</div>
+				<h:form>
+	        			<h:inputText id="login" value="#{adminMB.user.login}" class="text input" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom utilisateur';}" onload="this.value = 'Nom utilisateur';" required="true" size="20" maxlength="60" />
+	        			<h:message id="Login" for="login" errorClass="erreur" />
+
+				        <h:inputSecret id="password" value="#{adminMB.user.password}" class="input" equired="true" size="20" maxlength="20" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" onload="this.value = 'Password';"/>
+				        <h:message id="Password" for="password" errorClass="erreur" />
+
+						<div class="submit">
+					        <h:messages globalOnly="true" infoClass="info" />
+					        <h:commandButton class="MySubmit" value="Connexion" action="#{adminMB.login}" />
+					</div>	
+					<p><a href="#">Mot de passe oublié ?</a></p>
+        		</h:form>
+			</div>
+		</div>
+		 		
 </h:body>
 </html>
