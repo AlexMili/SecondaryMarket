@@ -11,11 +11,16 @@
 			<to-view-id>/pages/public/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
 			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inscriptionSociete</from-outcome>
+			<to-view-id>/pages/public/newSociety.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>

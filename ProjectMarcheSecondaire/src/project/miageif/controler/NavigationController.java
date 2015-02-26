@@ -30,10 +30,10 @@ public class NavigationController implements Serializable {
       if(pageId == null){
          return "accueil";
       }
-      if(pageId.equals("1")){
+      if(pageId.equals("login")){
          return "login";
-      }else if(pageId.equals("2")){
-         return "inscription";
+      }else if(pageId.equals("inscriptionSociete")){
+         return "inscriptionSociete";
       }else{
          return "acceuil";
       }
