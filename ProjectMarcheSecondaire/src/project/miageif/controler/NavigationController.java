@@ -19,11 +19,15 @@ public class NavigationController implements Serializable {
    private String pageId;
 
    public String pageAcceuil(){
-      return "page";
+      return "pages/public/accueil.xhtml";
    }
    
+   public String logout(){
+	      return "faces-redirect=true";
+	   }
+   
    public String pageLogin(){
-	      return "page";
+	      return "login";
 	   }
    
    public String showPage(){

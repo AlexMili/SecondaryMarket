@@ -12,8 +12,15 @@ public class AdministrateurServiceImp implements AdministrateurService {
 
 	@EJB
 	private AdministrateurDAO admin;
+	
+	@Override
+	public Administrateur findAdminByID(int id) {
+		return admin.findAdminByID(id);
+	}
 
-	public Administrateur findUserByLoginPass(String login, String pass) {
-		return admin.findUserByLoginPass(login, pass);
+	@Override
+	public Administrateur updateAdmin(Administrateur u) {
+		return admin.updateAdmin(u);
+		
 	}
 }

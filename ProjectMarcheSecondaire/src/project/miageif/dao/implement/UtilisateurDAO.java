@@ -13,21 +13,22 @@ import project.miageif.dao.GenericDAO;
 import project.miageif.utilitaire.HibernateUtil;
 
 @Stateless
-public class AdministrateurDAO extends GenericDAO<Administrateur> {
+public class UtilisateurDAO extends GenericDAO<Utilisateur> {
 
-	public AdministrateurDAO() {
-		super(Administrateur.class);
+	public UtilisateurDAO() {
+		super(Utilisateur.class);
 	}
 
-	public Administrateur findAdminByID(int id){
+	public Utilisateur findUserByLoginPass(String login, String pass){
 		 Map<String, Object> parameters = new HashMap<String, Object>();
-		 parameters.put("id", id); 
+		 parameters.put("login", login); 
+		 parameters.put("pass", pass); 
 		 //Administrateur adm = super.findOneResult(Administrateur.FIND_BY_ID, parameters);
 		 //System.out.println("*** **** *** Login = "+ adm.getLogin() + " ID = "+adm.getId() );
-		 return super.findOneResult(Administrateur.FIND_BY_ID, parameters);
+		 return super.findOneResult(Utilisateur.FIND_BY_LOGIN_PASS, parameters);
 	}
 	
-	public Administrateur updateAdmin(Administrateur u){
-		return super.update(u);
+	public Utilisateur userUpdate(Utilisateur u){
+		 return super.update(u);
 	}
 }

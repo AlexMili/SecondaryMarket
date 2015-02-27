@@ -9,8 +9,11 @@
 </h:head>
 <h:body>
  <h:form>
-  <h3>#{msgs.loginHello}: #{adminMB.user.login} || <h:commandLink action='#{admibistrateurMB.logOut()}' value='#{msgs.logout}' /> </h3>
- <h1>#{msgs.bienvenue}</h1>
+  <h3>#{msgs.loginHello}: #{userMB.admin.email}</h3>
+  <p>
+  <h:commandLink action="#{userMB.userLogout}" value="Logout"></h:commandLink>
+  </p>
+ <h1>#{msgs.bienvenue} Login : #{userMB.admin.user.login} ; nom : #{userMB.admin.nom}</h1>
  </h:form>
 </h:body>
 </html>

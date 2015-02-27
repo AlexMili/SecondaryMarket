@@ -3,6 +3,7 @@
 	<persistence-unit name="ProjectMarcheSecondaire" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/MARCHE_SECONDAIRE</jta-data-source>
+<!--        	 <class>com.company.maenad.core.model.AdExtraInfo</class> -->
 		<properties>
             <property name="hibernate.ejb.cfgfile" value="hibernate.cfg.xml"/>
 		</properties>
