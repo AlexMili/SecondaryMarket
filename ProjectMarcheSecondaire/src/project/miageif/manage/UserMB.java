@@ -48,7 +48,7 @@ public class UserMB {
 	public String login() {
 		if (user == null || user.getLogin().equals(" ")
 				|| user.getLogin() == null
-				|| user.getLogin().equals("Nom d'utilisateur"))
+				|| user.getLogin().equals("Nom utilisateur"))
 			return "loginError";
 		if (user == null || user.getPassword().equals(" ")
 				|| user.getPassword() == null

@@ -20,7 +20,6 @@
 </style>
 </h:head>
 <h:body>
-	<h:form>
 		<div class="container">
 			<div class="row">
 				<div class="span12">
@@ -35,15 +34,13 @@
 						<p>
 							<b>Or you could just press this neat little button:</b>
 						</p>
-							<h:commandLink styleClass="btn btn-large btn-info"
-						action="#{navigationController.pageAcceuil}" value="Retour à l'accueil">
-					</h:commandLink>
+							<h:outputLink styleClass="btn btn-large btn-info"
+						value="#{navigationController.pageAcceuil()}" >Retour à l'accueil
+					</h:outputLink>
 					</div>
 					<br />
 					</div>
 			</div>
 		</div>
-	</h:form>
-
 </h:body>
 </html>
