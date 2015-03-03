@@ -1,120 +1,128 @@
 package project.miageif.manage;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
-import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.junit.Test;
-
 import project.miageif.beans.Administrateur;
+import project.miageif.beans.Investisseur;
 import project.miageif.beans.Utilisateur;
-import project.miageif.controler.NavigationController;
+import project.miageif.beans.Utilisateur.Status;
 import project.miageif.services.AdministrateurService;
 import project.miageif.services.UtilisateurService;
-import project.miageif.utilitaire.HibernateUtil;
 
-@ManagedBean
-@RequestScoped
+@ManagedBean(name = "userMB")
+// @RequestScoped
+@SessionScoped
 public class UserMB {
 
 	private Utilisateur user;
 	private Administrateur Admin;
+	private Investisseur investisseur;
 	private boolean isLogged = false;
-	
+
 	@EJB
 	private UtilisateurService userService;
-	
+
 	@EJB
 	private AdministrateurService AdminService;
 
 	public UserMB() {
-		this.user=new Utilisateur();
+		this.user = new Utilisateur();
 	}
 
 	public Utilisateur getUser() {
 		return user;
 	}
-	
+
 	public Administrateur getAdmin() {
 		return Admin;
 	}
 
-	
-	/*Permet à l'administrateur de se connecter*/
+	/* Permet à l'administrateur de se connecter */
 	public String login() {
-		user = userService.findUserByLoginPass(this.user.getLogin(),this.user.getPassword());
-		//user.setStatus("Connected");
-		//userService.userUpdate(user);
+		if (user == null || user.getLogin().equals(" ")
+				|| user.getLogin() == null
+				|| user.getLogin().equals("Nom d'utilisateur"))
+			return "loginError";
+		if (user == null || user.getPassword().equals(" ")
+				|| user.getPassword() == null
+				|| user.getPassword().equals("Password"))
+			return "loginError";
+		user = userService.findUserByLoginPass(this.user.getLogin(),
+				this.user.getPassword());
+		// user.setStatus("Connected");
+		// userService.userUpdate(user);
 		if (user == null || user.equals(null))
 			return "/pages/public/loginError.xhtml?faces-redirect=truer";
-		if(user.getType().equals("ADMIN")){
-			//getRequest().login(user.getLogin(), user.getPassword());
-//			SessionFactory sessionFactory =  HibernateUtil.getSessionFactory();
-//			Session session = sessionFactory.getCurrentSession();
-//	        session.beginTransaction();
-//	        Admin = (Administrateur) session.get(Administrateur.class, user.getId());
+
+		/* Création d'une session */
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext()
+				.getSession(true);
+		session.setAttribute("CURRENT_USER", user);
+
+		isLogged = true;
+
+		if (user.getType().equals(Utilisateur.Type.ADMIN)) {
 			setAdmin(AdminService.findAdminByID(user.getId()));
-	        if (Admin == null || Admin.equals(null))
+			if (Admin == null || Admin.equals(null))
 				return "/pages/public/loginError.xhtml?faces-redirect=true";
-			user.setStatus("Connected");
+			user.setStatus(Status.CONNECTED);
 			user = userService.userUpdate(user);
-//			Admin =(Administrateur) session.merge(Admin);
-//			System.out.println("******** Dans logout *** * " + Admin.getStatus());
-//	        session.getTransaction().commit();
-//			this.Admin = new Administrateur();
-//			this.setAdmin(new Administrateur());
-//			setAdmin(AdminService.findAdminByID(user.getId()));
-			
-//			Admin = AdminService.updateAdmin(Admin);
-//			System.out.println("******** Dans logout ****"+ user.getStatus());
-//			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
-			
-			//System.out.println("******************* "+isUserAdmin());
-		    ///getRequest().getSession().setAttribute("role", "ADMIN");
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-			session.setAttribute("CURRENT_USER", user);
-			System.out.println("******** Connecter go redirect ****");
 			return "AdminConf";
-			//isConnected();
-			
+			// isConnected();
 		}
+
 		return "Acceuil";
 	}
 
 	public String userLogout() {
-		isLogged=false;
+		isLogged = false;
 		System.out.println("******** Dans logout ****");
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-		user = (Utilisateur) session.getAttribute("CURRENT_USER");
-		user.setStatus("DisConnected");
+		HttpSession session = (HttpSession) facesContext.getExternalContext()
+				.getSession(true);
+		// user = (Utilisateur) session.getAttribute("CURRENT_USER");
+		// if(user==null) return "/pages/public/loginError.xhtml";
+		user.setStatus(Status.DISCONNECTED);
 		user = userService.userUpdate(user);
 		session.removeAttribute("CURRENT_USER");
+		session.removeAttribute("userMB");
 		getRequest().getSession().invalidate();
 		return "logout";
-		}
-	
+	}
+
+	// @PostConstruct @PreDestroy
+	// public void sessionInitialized() {
+	// // ...
+	// }
+
+	// @PostConstruct
+	// public String sessionDestroyed() {
+	// isLogged=false;
+	// System.out.println("******** Dans logout ****");
+	// FacesContext facesContext = FacesContext.getCurrentInstance();
+	// HttpSession session = (HttpSession)
+	// facesContext.getExternalContext().getSession(true);
+	// user = (Utilisateur) session.getAttribute("CURRENT_USER");
+	// if(user==null) return "/pages/public/loginError.xhtml";
+	// user.setStatus(Status.DISCONNECTED);
+	// user = userService.userUpdate(user);
+	// session.removeAttribute("CURRENT_USER");
+	// session.removeAttribute("CURRENT_USER_ADMIN");
+	// getRequest().getSession().invalidate();
+	// return "Acceuil";
+	// }
 
 	private HttpServletRequest getRequest() {
-		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		return (HttpServletRequest) FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest();
 	}
 
 	public void setAdmin(Administrateur admin) {
@@ -124,8 +132,31 @@ public class UserMB {
 	public boolean isLogged() {
 		return isLogged;
 	}
-	
+
+	@PostConstruct
+	private void pconstruct() {
+		System.out.println("PostConstructing Session Bean 1");
+	}
+
+	/* Quand la session est détruite on met à jour le status en BD */
+	@PreDestroy
+	public void destroy() {
+		isLogged = false;
+		if (user != null) {
+			user.setStatus(Status.DISCONNECTED);
+			user = userService.userUpdate(user);
+		}
+	}
+
 	public void setLogged(boolean isLogged) {
 		this.isLogged = isLogged;
+	}
+
+	public Investisseur getInvestisseur() {
+		return investisseur;
+	}
+
+	public void setInvestisseur(Investisseur investisseur) {
+		this.investisseur = investisseur;
 	}
 }

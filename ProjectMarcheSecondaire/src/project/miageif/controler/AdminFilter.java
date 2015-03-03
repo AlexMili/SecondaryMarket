@@ -3,9 +3,10 @@ package project.miageif.controler;
 /*
  * Inspiré du site http://stackoverflow.com/questions/24319453/login-logout-in-jsf-2
  * 
- * Protege l'accès des dossiers protected
+ * Permet de filtrer les utilisateurs qui ont accès au dossier Admin
  * 
  * */
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -21,15 +22,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import project.miageif.beans.Utilisateur;
 import project.miageif.beans.Utilisateur.Status;
+import project.miageif.beans.Utilisateur.Type;
 
-@WebFilter("/pages/protected/*")
-public class LoginFilter implements Filter{
+@WebFilter("/pages/protected/admin/*")
+public class AdminFilter implements Filter{
 	private ServletContext context;
 	
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     	this.context = filterConfig.getServletContext();
-        this.context.log("LoginFilter initialized");
+        this.context.log("AdminFilter initialized");
     }
 
     @Override
@@ -38,12 +40,15 @@ public class LoginFilter implements Filter{
     	  HttpServletResponse res = (HttpServletResponse) response; 
           Utilisateur auth = (Utilisateur) req.getSession().getAttribute("CURRENT_USER");
      
-        if (auth == null || auth.getStatus().equals(Status.DISCONNECTED)) {
-        	res = (HttpServletResponse) response; 
-        	System.out.println("******** "+req.getContextPath() + "logout");
-        	res.sendRedirect(req.getContextPath() + "/pages/public/login.xhtml"); 
+        if (auth != null) {
+        	if(!auth.getType().equals(Type.ADMIN)){
+        	res.sendRedirect(req.getContextPath() + "/pages/public/accueil.xhtml"); 
+        	}
+        	else{
+        		chain.doFilter(req, res);
+        	}
         } else {
-            chain.doFilter(req, res); 
+            chain.doFilter(req, res); // Logged-in user found, so just continue request.
         }
     }
 

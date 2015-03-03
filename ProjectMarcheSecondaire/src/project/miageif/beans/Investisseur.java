@@ -1,13 +1,9 @@
 package project.miageif.beans;
 
-import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,16 +18,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "ADMINISTRATEUR")
-@NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.id=:id")
-public class Administrateur {
+@Table(name = "INVESTISSEUR")
+@NamedQuery(name="Investisseur.findAdminByID", query="select u from Investisseur u where u.id=:id")
+public class Investisseur {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final String FIND_BY_ID = "Administrateur.findAdminByID";
+	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
+	
+	
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,7 +48,7 @@ public class Administrateur {
 	private String prenom;
 	private String email;
 
-	public Administrateur() {}
+	public Investisseur() {}
 
 	@Override
 	public int hashCode() {
@@ -103,6 +101,7 @@ public class Administrateur {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	
 	}
 

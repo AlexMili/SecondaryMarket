@@ -19,7 +19,7 @@ public class NavigationController implements Serializable {
    private String pageId;
 
    public String pageAcceuil(){
-      return "pages/public/accueil.xhtml";
+      return "acceuil";
    }
    
    public String logout(){
@@ -30,18 +30,26 @@ public class NavigationController implements Serializable {
 	      return "login";
 	   }
    
-   public String showPage(){
-      if(pageId == null){
-         return "accueil";
-      }
-      if(pageId.equals("login")){
-         return "login";
-      }else if(pageId.equals("inscriptionSociete")){
-         return "inscriptionSociete";
-      }else{
-         return "acceuil";
-      }
-   }
+   public String pageInscriptionSociete(){
+	      return "inscriptionSociete";
+	   }
+   public String pageInscriptionInvest(){
+	      return "inscriptionInvestisseur";
+	   }
+   
+   
+//   public String showPage(){
+//      if(pageId == null){
+//         return "accueil";
+//      }
+//      if(pageId.equals("login")){
+//         return "login";
+//      }else if(pageId.equals("inscriptionSociete")){
+//         return "inscriptionSociete";
+//      }else{
+//         return "acceuil";
+//      }
+//   }
    
    public String getPageId() {
 	      return pageId;

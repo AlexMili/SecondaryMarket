@@ -49,7 +49,7 @@
 	<!-- </param-value> -->
 	<!-- </context-param> -->
 
-
+	<!-- FILTRE -->
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>project.miageif.controler.LoginFilter</filter-class>
@@ -66,6 +66,22 @@
         <filter-name>NoCacheFilter</filter-name>
         <url-pattern>*.xhtml</url-pattern>
     </filter-mapping>
+     <filter>
+		<filter-name>SessionFilter</filter-name>
+		<filter-class>project.miageif.controler.SessionFilter</filter-class>
+	</filter>
+	 <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/pages/public/login.xhtml</url-pattern>
+    </filter-mapping>
+     <filter>
+		<filter-name>AdminFilter</filter-name>
+		<filter-class>project.miageif.controler.AdminFilter</filter-class>
+	</filter>
+	 <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/pages/protected/admin/*</url-pattern>
+    </filter-mapping>
 
 	<!-- Login page -->
 	<login-config>
@@ -80,12 +96,9 @@
     <error-code>500</error-code>
     <location>/pages/public/accueil.xhtml</location>
 	</error-page>
-
-	<!-- System roles -->
-<!-- 	<security-role> -->
-<!-- 		<role-name>ADMIN</role-name> -->
-<!-- 	</security-role> -->
-<!-- 	<security-role> -->
-<!-- 		<role-name>USER</role-name> -->
-<!-- 	</security-role> -->
+	
+	<error-page>
+    <error-code>404</error-code>
+    <location>/pages/public/accueil.xhtml</location>
+	</error-page>
 </web-app>

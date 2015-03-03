@@ -1,19 +1,115 @@
+<!-- Inspiré de http://getbootstrap.com/2.3.2/getting-started.html#examples -->
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'
- xmlns:f='http://java.sun.com/jsf/core'
- xmlns:h='http://java.sun.com/jsf/html'
- xmlns:ui='http://java.sun.com/jsf/facelets'>
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
- <h:outputStylesheet library='css' name='main.css' />
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
 </h:head>
-<h:body>
- <h:form>
-  <h3>#{msgs.loginHello}: #{userMB.admin.email}</h3>
-  <p>
-  <h:commandLink action="#{userMB.userLogout}" value="Logout"></h:commandLink>
-  </p>
- <h1>#{msgs.bienvenue} Login : #{userMB.admin.user.login} ; nom : #{userMB.admin.nom}</h1>
- </h:form>
-</h:body>
+
+<body>
+	<h:form>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<button type="button" class="btn btn-navbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="brand" href="#">Panneaux de Configuration</a>
+
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">
+							#{userMB.user.login} Cliquez ici pour vous déconnecter
+							<h:commandLink styleClass="btn btn-danger"
+								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
+						</p>
+						<ul class="nav">
+							<li class="active"><a href="#">Société</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+
+				</div>
+			</div>
+		</div>
+	</h:form>
+
+	<div class="container">
+
+		<!-- Main hero unit for a primary marketing message or call to action -->
+		<div class="hero-unit">
+			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
+			<p>Bienvenue sur le Panneaux de configaration.</p>
+			<p>
+				<a href="#" class="btn btn-primary btn-large">En savoir plus
+					&raquo;</a>
+			</p>
+		</div>
+
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="span4">
+				<h2>Heading</h2>
+				<p>Donec id elit non mi porta gravida at eget metus. Fusce
+					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+					magna mollis euismod. Donec sed odio dui.</p>
+				<p>
+					<a class="btn" href="#">View details &raquo;</a>
+				</p>
+			</div>
+			<div class="span4">
+				<h2>Heading</h2>
+				<p>Donec id elit non mi porta gravida at eget metus. Fusce
+					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+					magna mollis euismod. Donec sed odio dui.</p>
+				<p>
+					<a class="btn" href="#">View details &raquo;</a>
+				</p>
+			</div>
+			<div class="span4">
+				<h2>Heading</h2>
+				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
+					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
+					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
+					nibh, ut fermentum massa justo sit amet risus.</p>
+				<p>
+					<a class="btn" href="#">View details &raquo;</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+</body>
 </html>

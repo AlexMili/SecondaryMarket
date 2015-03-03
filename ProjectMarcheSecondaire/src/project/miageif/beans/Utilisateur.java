@@ -1,9 +1,12 @@
 package project.miageif.beans;
 
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +24,11 @@ import javax.validation.constraints.Size;
 		+ "and u.password=:pass")
 public class Utilisateur {
 	
+	@Table(name= "TYPE")
+	public static enum Type { ADMIN, INVEST, MEMBER}; 
+	@Table(name= "STATUS")
+	public static enum Status {DISCONNECTED, CONNECTED}; 
+	
 	public static final String FIND_BY_LOGIN_PASS = "Utilisateur.findUserByLoginPass";
 	
 	@Id @NotNull
@@ -34,11 +42,12 @@ public class Utilisateur {
 	@NotNull
 	private String password;
 	
-	private String type;
+	@Enumerated(EnumType.ORDINAL)
+	private Type type;
 	
 	@NotNull
-	@Column(columnDefinition="varchar(255) default 'DisConnect'")
-	private String status="DisConnect";
+	@Enumerated(EnumType.ORDINAL)
+	private Status status=Status.DISCONNECTED;
 
 	public Utilisateur() {}
 
@@ -80,23 +89,27 @@ public class Utilisateur {
 		this.password = password;
 	}
 	
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 	
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	
-	
+	@PreDestroy
+	public void cleanUp() throws Exception {
+	  this.status=Status.DISCONNECTED;
+	  System.out.println("Utilisateur détruit");
+	}
 	
 	
 	}

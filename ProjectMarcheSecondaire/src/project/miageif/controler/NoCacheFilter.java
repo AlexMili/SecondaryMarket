@@ -1,6 +1,9 @@
 package project.miageif.controler;
 import java.io.IOException;
+
 import javax.faces.application.ResourceHandler;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,12 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Code inspiré : http://stackoverflow.com/questions/19751987/disable-webpage-caching-for-browser-forward-back-buttons
  * Servlet Filter implementation class NoCacheFilter
+ * Permet de vider le cash pour éviter de faire un back dans le navigateur après un logout
+ * 
  */
   @WebFilter(urlPatterns = {"*.xhtml"})
   public class NoCacheFilter implements Filter {
 
 /**
  * Default constructor. 
+ * 
+ * 
  */
 public NoCacheFilter() {
     // TODO Auto-generated constructor stub
@@ -46,7 +53,6 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
         res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
         res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         res.setDateHeader("Expires", 0); // Proxies.
-        //res.sendRedirect(req.getContextPath() + "/pages/public/accueil.xhtml");
     }
 
     chain.doFilter(request, response);
