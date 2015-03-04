@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#public#accueil.xhtml"
+  PATH="/pages/public/accueil.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#accueil.xhtml:0" NAME="item"
+   PATH="/pages/public/accueil.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#pages#public#login.xhtml"
+    NAME="output" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="inscriptionSociete::#pages#public#newSociety.xhtml"
+    NAME="output1" PATH="/pages/public/newSociety.xhtml"
+    TARGET="rules:#pages#public#newSociety.xhtml"
+    TITLE="inscriptionSociete" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="inscriptionInvestisseur::#pages#public#inscriptionInvestisseur.xhtml"
+    NAME="output2" PATH="/pages/public/inscriptionInvestisseur.xhtml"
+    TARGET="rules:#pages#public#inscriptionInvestisseur.xhtml"
+    TITLE="inscriptionInvestisseur" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#login.xhtml"
+  PATH="/pages/public/login.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#login.xhtml:0" NAME="item"
+   PATH="/pages/public/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="loginError::#pages#public#loginError.xhtml"
+    NAME="output" PATH="/pages/public/loginError.xhtml"
+    TARGET="rules:#pages#public#loginError.xhtml" TITLE="loginError" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="AdminConf::#pages#protected#admin#configuration.xhtml"
+    NAME="output1" PATH="/pages/protected/admin/configuration.xhtml"
+    TARGET="rules:#pages#protected#admin#configuration.xhtml"
+    TITLE="AdminConf" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="acceuil::#pages#public#accueil.xhtml"
+    NAME="output2" PATH="/pages/public/accueil.xhtml"
+    TARGET="rules:#pages#public#accueil.xhtml" TITLE="acceuil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#configuration.xhtml"
+  PATH="/pages/protected/admin/configuration.xhtml" SHAPE="496,193,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#protected#admin#configuration.xhtml:0"
+   NAME="item" PATH="/pages/protected/admin/configuration.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
+    NAME="output" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#loginError.xhtml"
+  PATH="/pages/public/loginError.xhtml" SHAPE="496,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#loginError.xhtml:0" NAME="item"
+   PATH="/pages/public/loginError.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="accueil::#pages#public#accueil.xhtml"
+    NAME="output" PATH="/pages/public/accueil.xhtml"
+    TARGET="rules:#pages#public#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#newSociety.xhtml"
+  PATH="/pages/public/newSociety.xhtml" SHAPE="256,209,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#public#inscriptionInvestisseur.xhtml"
+  PATH="/pages/public/inscriptionInvestisseur.xhtml" SHAPE="288,321,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#inscriptionInvestisseur.xhtml:0"
+   NAME="item" PATH="/pages/public/inscriptionInvestisseur.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="accueil::#pages#public#accueil.xhtml"
+    NAME="output" PATH="/pages/public/accueil.xhtml"
+    TARGET="rules:#pages#public#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

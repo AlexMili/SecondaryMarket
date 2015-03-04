@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>ProjectMarcheSecondaire</display-name>
+	<welcome-file-list>
+		<welcome-file>/pages/public/accueil.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+		<url-pattern>*.jsf</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<!-- Protected area definition -->
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>Restricted Area - ADMIN Only</web-resource-name> -->
+<!-- 			<url-pattern>/pages/protected/admin/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>ADMIN</role-name> -->
+<!-- 		</auth-constraint> -->
+<!-- 	</security-constraint> -->
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>Restricted Area - USER and ADMIN</web-resource-name> -->
+<!-- 			<url-pattern>/pages/protected/user/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>USER</role-name> -->
+<!-- 			<role-name>ADMIN</role-name> -->
+<!-- 		</auth-constraint> -->
+<!-- 	</security-constraint> -->
+
+	<!-- SECURITE -->
+	<!-- https://blogs.oracle.com/enterprisetechtips/entry/improving_jsf_security_configuration_with -->
+	<!-- <context-param> -->
+	<!-- <param-name>jsf-security-user-provider</param-name> -->
+	<!-- <param-value> -->
+	<!-- br.com.globalcode.jsf.security.usersession.SessionUserProvider -->
+	<!-- </param-value> -->
+	<!-- </context-param> -->
+
+	<!-- FILTRE -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>project.miageif.controler.LoginFilter</filter-class>
+	</filter>
+	 <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/pages/protected/*</url-pattern>
+    </filter-mapping>
+    <filter>
+		<filter-name>NoCacheFilter</filter-name>
+		<filter-class>project.miageif.controler.NoCacheFilter</filter-class>
+	</filter>
+	 <filter-mapping>
+        <filter-name>NoCacheFilter</filter-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </filter-mapping>
+     <filter>
+		<filter-name>SessionFilter</filter-name>
+		<filter-class>project.miageif.controler.SessionFilter</filter-class>
+	</filter>
+	 <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/pages/public/login.xhtml</url-pattern>
+    </filter-mapping>
+     <filter>
+		<filter-name>AdminFilter</filter-name>
+		<filter-class>project.miageif.controler.AdminFilter</filter-class>
+	</filter>
+	 <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/pages/protected/admin/*</url-pattern>
+    </filter-mapping>
+
+	<!-- Login page -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/pages/public/login.xhtml</form-login-page>
+			<form-error-page>/pages/public/loginError.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+	
+	<error-page>
+    <error-code>500</error-code>
+    <location>/pages/public/accueil.xhtml</location>
+	</error-page>
+	
+	<error-page>
+    <error-code>404</error-code>
+    <location>/pages/public/accueil.xhtml</location>
+	</error-page>
+</web-app>
