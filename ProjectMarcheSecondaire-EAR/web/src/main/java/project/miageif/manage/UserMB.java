@@ -9,15 +9,18 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+
 import project.miageif.beans.Administrateur;
 import project.miageif.beans.Investisseur;
 import project.miageif.beans.Utilisateur;
 import project.miageif.beans.Utilisateur.Status;
 import project.miageif.services.AdministrateurService;
 import project.miageif.services.UtilisateurService;
+import project.miageif.utilitaire.HibernateUtil;
 
 @ManagedBean(name = "userMB")
-// @RequestScoped
 @SessionScoped
 public class UserMB {
 
@@ -142,9 +145,19 @@ public class UserMB {
 	@PreDestroy
 	public void destroy() {
 		isLogged = false;
+		System.out.println("****************** Destruction Session Bean 1");
 		if (user != null) {
 			user.setStatus(Status.DISCONNECTED);
-			user = userService.userUpdate(user);
+			try{
+				Session session = HibernateUtil.getSessionFactory().openSession();
+		        session.beginTransaction();
+		        SQLQuery q = session.createSQLQuery("update UTILISATEUR u set u.status='0' where u.Id_Utilisateur='"+user.getId()+"'");
+		        int result =q.executeUpdate();
+		        session.getTransaction().commit();
+				//user = userService.userUpdate(user);
+			}catch(Exception e){
+			
+			}
 		}
 	}
 
