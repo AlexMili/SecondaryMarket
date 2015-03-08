@@ -6,9 +6,13 @@
 	xmlns:h='http://java.sun.com/jsf/html'
 	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
+	<!-- css -->
 	<h:outputStylesheet library='css' name='bootstrap.css' />
 	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
 	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<!-- 	jquery -->
+	<h:outputScript library='js' name="jquery/jquery.js"/>
+	<h:outputScript library='js' name="bootstrap.js"/>
 	<!-- Le styles -->
 	<style type="text/css">
 body {
@@ -43,18 +47,19 @@ body {
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="brand" href="#">Panneaux de Configuration</a>
+<!-- 					<a class="brand" href="#recherche">Recherche</a> -->
 
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
-							#{userMB.user.login} Cliquez ici pour vous déconnecter
+							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous déconnecter
 							<h:commandLink styleClass="btn btn-danger"
 								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
 						</p>
 						<ul class="nav">
-							<li class="active"><a href="#">Société</a></li>
+							<li><a href="#home">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li><a href="#contact">Contact</a></li>
+							<li><a  style="font-weight: bold;" href="#recherche">Rechercher</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -69,11 +74,10 @@ body {
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
 			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
-			<p>Bienvenue sur le Panneaux de configaration.</p>
-			<p>
-				<a href="#" class="btn btn-primary btn-large">En savoir plus
-					&raquo;</a>
-			</p>
+			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue sur le Panneaux de configaration.</p>
+			<hr/>
+			<p style="font-style: italic; font-weight: bold;">Nombre de Société à accréditer : </p>
+			<p style="font-style: italic; font-weight: bold;">Nombre de profile à valider : </p>
 		</div>
 
 		<!-- Example row of columns -->
@@ -112,4 +116,21 @@ body {
 	</div>
 	<!-- /container -->
 </body>
+<h:outputScript target="head">
+	/**
+ * Fichier javascript pour le panneaux de configuration
+ */
+$ = jQuery;
+// Then you can use it
+$(document)
+		.ready(
+				function() {
+					$('.nav').button();
+					var lien = $(location).attr('href').split("#");
+					alert("Bienvenue sur le paneaux d'aministration #{userMB.admin.prenom}");
+					if(typeof myVar == 'undefined'){
+						$('#home').addClass("active");
+					}
+				});
+</h:outputScript>
 </html>
