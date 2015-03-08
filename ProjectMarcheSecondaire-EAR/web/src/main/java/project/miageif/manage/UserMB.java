@@ -16,7 +16,9 @@ import project.miageif.beans.Administrateur;
 import project.miageif.beans.Investisseur;
 import project.miageif.beans.Utilisateur;
 import project.miageif.beans.Utilisateur.Status;
+import project.miageif.beans.Utilisateur.Type;
 import project.miageif.services.AdministrateurService;
+import project.miageif.services.InvestisseurService;
 import project.miageif.services.UtilisateurService;
 import project.miageif.utilitaire.HibernateUtil;
 
@@ -31,12 +33,14 @@ public class UserMB {
 
 	@EJB
 	private UtilisateurService userService;
-
 	@EJB
 	private AdministrateurService AdminService;
+	@EJB
+	private InvestisseurService investService;
 
 	public UserMB() {
 		this.user = new Utilisateur();
+		this.investisseur = new Investisseur();
 	}
 
 	public Utilisateur getUser() {
@@ -81,6 +85,16 @@ public class UserMB {
 			return "AdminConf";
 			// isConnected();
 		}
+		
+		if (user.getType().equals(Utilisateur.Type.INVEST)) {
+			setInvestisseur(investService.findInvestByID(user.getId()));
+			if (investisseur == null || investisseur.equals(null))
+				return "/pages/public/loginError.xhtml?faces-redirect=true";
+			user.setStatus(Status.CONNECTED);
+			user = userService.userUpdate(user);
+			return "investisseur";
+			// isConnected();
+		}
 
 		return "Acceuil";
 	}
@@ -101,27 +115,14 @@ public class UserMB {
 		return "logout";
 	}
 
-	// @PostConstruct @PreDestroy
-	// public void sessionInitialized() {
-	// // ...
-	// }
-
-	// @PostConstruct
-	// public String sessionDestroyed() {
-	// isLogged=false;
-	// System.out.println("******** Dans logout ****");
-	// FacesContext facesContext = FacesContext.getCurrentInstance();
-	// HttpSession session = (HttpSession)
-	// facesContext.getExternalContext().getSession(true);
-	// user = (Utilisateur) session.getAttribute("CURRENT_USER");
-	// if(user==null) return "/pages/public/loginError.xhtml";
-	// user.setStatus(Status.DISCONNECTED);
-	// user = userService.userUpdate(user);
-	// session.removeAttribute("CURRENT_USER");
-	// session.removeAttribute("CURRENT_USER_ADMIN");
-	// getRequest().getSession().invalidate();
-	// return "Acceuil";
-	// }
+	public String createInvest(){
+		user.setType(Type.INVEST);
+		userService.createUser(user);
+		user=userService.findUserByLoginPass(user.getLogin(), user.getPassword());
+		investisseur.setUser(user);
+		investService.createInvest(investisseur);
+		return "login";
+	}
 
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance()

@@ -23,4 +23,9 @@ public class UtilisateurServiceImp implements UtilisateurService {
 	public Utilisateur userUpdate(Utilisateur u) {
 		return user.userUpdate(u);
 	}
+
+	@Override
+	public void createUser(Utilisateur u) {
+		user.createUser(u);
+	}
 }

@@ -96,7 +96,7 @@ body {
 							onblur="if (this.value == '') {this.value = 'Email utilisateur';}"
 							onload="this.value = 'Email utilisateur';" required="true"
 							size="20" maxlength="60">
-							<f:validateRegex pattern="*@*.*"></f:validateRegex>
+<!-- 							<f:validateRegex pattern="*@*.*"></f:validateRegex> -->
 						</h:inputText></td>
 				</tr>
 				<tr>
@@ -107,7 +107,7 @@ body {
 					<div class="submit">
 							<h:messages globalOnly="true" infoClass="info" />
 							<h:commandButton styleClass="btn btn-large btn-primary" value="Connexion"
-								action="#{userMB.login}" />
+								action="#{userMB.createInvest()}" />
 						</div>
 					</td>
 				</tr>

@@ -27,4 +27,8 @@ public class UtilisateurDAO extends GenericDAO<Utilisateur> {
 	public Utilisateur userUpdate(Utilisateur u){
 		 return super.update(u);
 	}
+	
+	public void createUser(Utilisateur u){
+		super.save(u);
+	}
 }

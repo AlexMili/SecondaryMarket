@@ -8,4 +8,5 @@ import project.miageif.beans.Utilisateur;
 public interface UtilisateurService {
  public Utilisateur findUserByLoginPass(String login, String pass);
  public Utilisateur userUpdate(Utilisateur u);
+ public void createUser(Utilisateur u);
 }

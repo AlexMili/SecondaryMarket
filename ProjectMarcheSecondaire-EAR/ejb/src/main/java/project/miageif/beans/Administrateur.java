@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ADMINISTRATEUR")
-@NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.id=:id")
+@NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.user.id=:id")
 public class Administrateur {
 	
 	/**
