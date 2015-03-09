@@ -32,7 +32,7 @@ public class Administrateur extends Utilisateur{
 
 	public static final String FIND_BY_ID = "Administrateur.findAdminByID";
 
-	public Administrateur() {}
+	public Administrateur() { setType(Type.ADMIN); }
 
 	private String nom;
 	
