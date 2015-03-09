@@ -31,7 +31,7 @@ public class Utilisateur {
 	public static final String FIND_BY_LOGIN_PASS = "Utilisateur.findUserByLoginPass";
 	
 	@Id @NotNull
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id_Utilisateur")
 	private Integer id;
 
