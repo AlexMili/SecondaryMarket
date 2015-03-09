@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -19,8 +21,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ADMINISTRATEUR")
-@NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.user.id=:id")
-public class Administrateur {
+@Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.id=:id")
+public class Administrateur extends Utilisateur{
 	
 	/**
 	 * 
@@ -28,43 +31,25 @@ public class Administrateur {
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIND_BY_ID = "Administrateur.findAdminByID";
-	
-	@Id @NotNull
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Integer id;
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	@OneToOne
-	@JoinColumn(name="Id_Utilisateur")
-	Utilisateur user;
-	
-	private String nom;
-	private String prenom;
-	private String email;
 
 	public Administrateur() {}
 
-	@Override
-	public int hashCode() {
-		return getId();
-	}
+	private String nom;
+	
+	public String getNom() { return this.nom; }
+	public void setNom(String nom) { this.nom = nom; }
 	
 	
-	public Integer getId() {
-		return id;
-	}
+	private String prenom;
+	
+	public String getPrenom() { return this.prenom; }
+	public void setPrenom(String prenom) { this.prenom = prenom; }
+	
+	
+	private String email;
 
-	public Utilisateur getUser() {
-		return user;
-	}
-	
-	public void setUser(Utilisateur user) {
-		this.user = user;
-	}
+	public String getEmail() { return this.email; }
+	public void setEmail(String email) { this.email = email; }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -75,31 +60,4 @@ public class Administrateur {
 
 		return false;
 	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	}
-
-
+}

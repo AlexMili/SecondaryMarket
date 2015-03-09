@@ -80,6 +80,7 @@ public class UserMB {
 			if (Admin == null || Admin.equals(null))
 				return "/pages/public/loginError.xhtml?faces-redirect=true";
 			user.setStatus(Status.CONNECTED);
+			Admin.setStatus(Status.CONNECTED);
 			user = userService.userUpdate(user);
 			isLogged = true;
 			return "AdminConf";
@@ -125,6 +126,8 @@ public class UserMB {
 		//investisseur.setUser(user);
 		
 		investService.createInvest(investisseur);
+		investisseur = null;
+		investisseur = new Investisseur();
 		return "login";
 	}
 
