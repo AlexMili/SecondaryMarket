@@ -69,7 +69,7 @@ body {
 				</tr>
 				<tr>
 					<td><p>Login :</p></td>
-					<td><h:inputText id="login" value="#{userMB.user.login}"
+					<td><h:inputText id="login" value="#{userMB.investisseur.login}"
 							styleClass="input-block-level" class="text input"
 							onfocus="this.value = '';"
 							onblur="if (this.value == '') {this.value = 'Login utilisateur';}"
@@ -80,7 +80,7 @@ body {
 				<tr>
 					<td><p>Password :</p></td>
 					<td><h:inputSecret id="password"
-							value="#{userMB.user.password}" class="input" required="true"
+							value="#{userMB.investisseur.password}" class="input" required="true"
 							size="20" maxlength="20" onfocus="this.value = '';"
 							onblur="if (this.value == '') {this.value = 'Password';}"
 							onload="this.value = 'Password';">
