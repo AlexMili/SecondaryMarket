@@ -2,6 +2,8 @@ package project.miageif.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import project.miageif.beans.Utilisateur.Status;
 
 @Entity
 @Table(name = "INVESTISSEUR")
@@ -24,17 +28,26 @@ public class Investisseur {
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
-	
+
+	@Table(name= "APPROVAL")
+	public static enum Approval {WAITING, APPROVED};
 	
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	@NotNull
+	@Enumerated(EnumType.ORDINAL)
+	private Approval isApproved=Approval.WAITING;
+	
+	public void setApproval(Approval status) { this.isApproved = status; }
+	public boolean isApproved() { return this.isApproved == Approval.WAITING ? false : true; }
 
 	@OneToOne
 	@JoinColumn(name="Id_Utilisateur")

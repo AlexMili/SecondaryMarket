@@ -50,5 +50,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/ProjectMarcheSecondaire-EAR-ejb"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
