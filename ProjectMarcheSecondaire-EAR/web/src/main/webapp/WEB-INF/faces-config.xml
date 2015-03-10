@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+	<!-- Lister pour vider le cache du navigateur Règle de navigation -->
+<!-- 	page d'accueil -->
+	<navigation-rule>
+		<from-view-id>/pages/public/accueil.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inscriptionSociete</from-outcome>
+			<to-view-id>/pages/public/newSociety.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inscriptionInvestisseur</from-outcome>
+			<to-view-id>/pages/public/inscriptionInvestisseur.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+<!-- 	page de login -->
+	<navigation-rule>
+		<from-view-id>/pages/public/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>loginError</from-outcome>
+			<to-view-id>/pages/public/loginError.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>AdminConf</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>investisseur</from-outcome>
+			<to-view-id>/pages/protected/investisseur/investisseur.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+<!-- 	panneau d'administration -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/admin/configuration.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+<!-- 	panneau investisseur -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/investisseur/investisseur.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+<!-- 	panneau error -->
+	<navigation-rule>
+		<from-view-id>/pages/public/loginError.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+<!-- 	panneau d'inscription investisseur -->
+	<navigation-rule>
+		<from-view-id>/pages/public/inscriptionInvestisseur.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+</faces-config>

@@ -1,0 +1,108 @@
+package project.miageif.beans;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "INVESTISSEUR")
+@NamedQuery(name="Investisseur.findAdminByID", query="select u from Investisseur u where u.id=:id")
+public class Investisseur {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
+	
+	
+	
+	@Id @NotNull
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@OneToOne
+	@JoinColumn(name="Id_Utilisateur")
+	Utilisateur user;
+	
+	private String nom;
+	private String prenom;
+	private String email;
+
+	public Investisseur() {}
+
+	@Override
+	public int hashCode() {
+		return getId();
+	}
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public Utilisateur getUser() {
+		return user;
+	}
+	
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Administrateur) {
+			Administrateur adm = (Administrateur) obj;
+			return (adm.getId()==getId());
+		}
+
+		return false;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	}
+
+

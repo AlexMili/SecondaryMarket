@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
+<h:head>
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+/* Custom container */
+.container-narrow {
+	margin: 0 auto;
+	max-width: 700px;
+}
+
+.container-narrow>hr {
+	margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	margin: 60px 0;
+	text-align: center;
+}
+
+.jumbotron h1 {
+	font-size: 72px;
+	line-height: 1;
+}
+
+.jumbotron .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+	margin: 60px 0;
+}
+
+.marketing p+h4 {
+	margin-top: 28px;
+}
+</style>
+</h:head>
+<h:body>
+	<h:form>
+		<div class="container-narrow">
+
+			<div class="masthead">
+				<ul class="nav nav-pills pull-right">
+					<li class="active"><h:commandLink action="#{navigationController.pageAcceuil}"
+							value="Home">
+						</h:commandLink></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><h:commandLink action="#{navigationController.pageLogin}"
+							value="Login">
+						</h:commandLink></li>
+				</ul>
+				<h3 class="muted">High Frequency</h3>
+			</div>
+
+			<hr></hr>
+
+			<div class="jumbotron">
+				<h1>Faites le bon choix</h1>
+				<p class="lead">Choisissez nous choisissez la sécurité, la performance et la robustest.
+				Beaucoup d'entreprises nous ont fait confiance et continuent de faire du chemin avec nous.
+				Faite le meilleur investissement, choisissez nous.</p>
+				<h:commandLink styleClass="btn btn-large btn-success"
+					action="#{navigationController.pageInscriptionSociete}"
+					value="Inscrire une Société">
+				</h:commandLink>
+			</div>
+
+			<hr />
+			
+			<div class="jumbotron">
+				<h1>Investissez maintenant</h1>
+				<p class="lead">Faites votre capital fructifier, avec nous votre argent ne dort plus.
+				Faites le meilleur choix, c'est ici que ça se passe.</p>
+				<h:commandLink styleClass="btn btn-large btn-success"
+					action="#{navigationController.pageInscriptionInvest}"
+					value="Inscription Investisseur">
+				</h:commandLink>
+			</div>
+			
+			<hr />
+
+			<div class="row-fluid marketing">
+				<div class="span6">
+					<h4>Intermédiation</h4>
+					<p>Nous mettons à votre disposition notre platform pour que vous puissez acheter ou venre
+					 nos différents produits.
+					</p>
+
+					<h4>Achat / Vente de Titres</h4>
+					<p>Plusieurs Entreprises sont disponibles, vous profitez d'une recherche rapide et innovante.</p>
+
+					<h4>Achat / Vente d'Options</h4>
+					<p>Pensez à vous couvrir des imprévus, nous pouvons vous proposer des contrats d'options qui vous
+					conviennent.</p>
+				</div>
+
+				<div class="span6">
+					<h4>Achat / Vente de Stock Option</h4>
+					<p>Salarié découvrez nos contrat Stock Option et miser sur l'avenir de votre entreprise. 
+					   L'avenir se jou maintenant n'attendez plus. </p>
+					
+					<h4>Ventes direct</h4>
+					<p>Acheter maintenants, signé maintement, faites des profits maintenant.</p>
+
+					<h4>Ventes aux enchères</h4>
+					<p>Choisissez la stratégie du plus offrant et faites la meilleur affaire.</p>
+				</div>
+			</div>
+
+
+		</div>
+	</h:form>
+</h:body>
+</html>
+

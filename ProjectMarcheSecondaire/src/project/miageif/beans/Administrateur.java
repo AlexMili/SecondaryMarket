@@ -1,13 +1,19 @@
 package project.miageif.beans;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.servlet.ServletException;
@@ -17,36 +23,51 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ADMINISTRATEUR")
-@NamedQuery(name="Administrateur.findUserByLoginPass", query="select u from Administrateur u where u.login = :login "
-		+ "and u.password=:pass")
+@NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.id=:id")
 public class Administrateur {
 	
-	public static final String FIND_BY_ID = "Administrateur.findUserByLoginPass";
-	
-	@Id @NotNull @Size(min=1, max=2)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Id_Administrateur")
-	private int id;
-	
-	@NotNull
-	private String login;
-	//@Column(name="password")
-	@NotNull
-	private String password;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public Administrateur() {
+	public static final String FIND_BY_ID = "Administrateur.findAdminByID";
+	
+	@Id @NotNull
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
+	@OneToOne
+	@JoinColumn(name="Id_Utilisateur")
+	Utilisateur user;
+	
+	private String nom;
+	private String prenom;
+	private String email;
+
+	public Administrateur() {}
 
 	@Override
 	public int hashCode() {
 		return getId();
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getId() {
+	
+	public Integer getId() {
 		return id;
+	}
+
+	public Utilisateur getUser() {
+		return user;
+	}
+	
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
 
 	@Override
@@ -59,20 +80,28 @@ public class Administrateur {
 		return false;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	}

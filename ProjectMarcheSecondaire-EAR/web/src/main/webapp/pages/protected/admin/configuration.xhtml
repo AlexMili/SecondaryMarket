@@ -1,0 +1,128 @@
+<!-- Inspiré de http://getbootstrap.com/2.3.2/getting-started.html#examples -->
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
+<h:head>
+	<!-- css -->
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<!-- 	jquery -->
+	<h:outputScript library='js' name="jquery/jquery.js"/>
+	<h:outputScript library='js' name="bootstrap.js"/>
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
+</h:head>
+
+<body>
+	<h:form>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<button type="button" class="btn btn-navbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+<!-- 					<a class="brand" href="#recherche">Recherche</a> -->
+
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">
+							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous déconnecter
+							<h:commandLink styleClass="btn btn-danger"
+								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
+						</p>
+						<ul class="nav">
+							<li><a href="#home">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+							<li><a  style="font-weight: bold;" href="#recherche">Rechercher</a></li>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+
+				</div>
+			</div>
+		</div>
+	</h:form>
+
+	<div class="container">
+
+		<!-- Main hero unit for a primary marketing message or call to action -->
+		<div class="hero-unit">
+			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
+			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue sur le Panneaux de configaration.</p>
+			<hr/>
+			<p style="font-style: italic; font-weight: bold;">Nombre de Société à accréditer : </p>
+			<p style="font-style: italic; font-weight: bold;">Nombre de profile à valider : </p>
+		</div>
+
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="span4">
+				<h2>Sociétés</h2>
+				<p>Consulter la liste des sociétés et leur informations. Acrédité les sociétés disponible sur la platform.</p>
+				<p>
+					<a class="btn btn-primary" href="#">GO</a>
+				</p>
+			</div>
+			<div class="span4">
+				<h2>Investisseurs/Membres</h2>
+				<p>Consulter le profile des utilisateurs que ce soit un Investisseur ou un Membre de société.</p>
+				<p>
+					<a class="btn btn-primary" href="#">GO</a>
+				</p>
+			</div>
+			<div class="span4">
+				<h2>Offre achat/vente</h2>
+				<p>Consulter les différentes offres de Achat/Vente de produits en cours.
+				</p>
+				<p>
+					<a class="btn btn-primary" href="#">GO</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+</body>
+<h:outputScript target="head">
+	/**
+ * Fichier javascript pour le panneaux de configuration
+ */
+$ = jQuery;
+// Then you can use it
+$(document)
+		.ready(
+				function() {
+					$('.nav').button();
+					var lien = $(location).attr('href').split("#");
+					//alert("Bienvenue sur le paneaux d'aministration #{userMB.admin.prenom}");
+					if(typeof myVar == 'undefined'){
+						$('#home').addClass("active");
+					}
+				});
+</h:outputScript>
+</html>

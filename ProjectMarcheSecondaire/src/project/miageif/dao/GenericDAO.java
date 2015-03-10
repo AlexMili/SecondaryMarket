@@ -5,12 +5,12 @@ package project.miageif.dao;
  http://www.javacodegeeks.com/2012/06/full-webapplication-jsf-ejb-jpa-jaas.html
  */
 import java.sql.Connection;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.activation.DataSource;
+import javax.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
@@ -25,7 +25,8 @@ import javax.persistence.criteria.CriteriaQuery;
 public abstract class GenericDAO<T> {
 
 	private final static String UNIT_NAME = "ProjectMarcheSecondaire";
-
+	
+	@Inject
 	@PersistenceContext(unitName = UNIT_NAME)
 	private EntityManager em;
 
@@ -47,6 +48,17 @@ public abstract class GenericDAO<T> {
 
 	public T update(T entity) {
 		return em.merge(entity);
+//		System.out.println("***************** persist:");
+//		try
+//		{
+//		   em.flush();
+//		}
+//		catch (Exception e)
+//		{
+//		  System.out.println("*************** exception:");
+//		  // Further investigation of Exception e,
+//		  // then throw MyContraintViolationException
+//		}
 	}
 
 	public T find(int entityID) {
