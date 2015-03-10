@@ -42,7 +42,7 @@ public class AdministrateurTests{
 		admin = adminServ.findAdminByID(1);
 		Assert.assertEquals("DALMAT", admin.getNom());
 		
-		Assert.assertEquals("yann", admin.getUser().getLogin());
+		Assert.assertEquals("yan", admin.getUser().getLogin());
 	}
     
 }
