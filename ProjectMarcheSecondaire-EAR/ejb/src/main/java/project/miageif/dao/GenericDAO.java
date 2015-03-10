@@ -29,6 +29,9 @@ public abstract class GenericDAO<T> {
 	//@Inject
 	@PersistenceContext(unitName = UNIT_NAME)
 	private EntityManager em;
+	
+	public EntityManager getManager() { return this.em; }
+	
 
 	private Class<T> entityClass;
 
