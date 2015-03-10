@@ -5,6 +5,29 @@
 	xmlns:h='http://java.sun.com/jsf/html'
 	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
+<<<<<<< HEAD
+	<title>Bienvenu sur notre site -- Rainbow marché de secondaire</title>
+	<h:outputStylesheet library='css' name='accueil.css' />
+</h:head>
+<h:body>
+	<p>Bienvenu sur notre site -- Rainbow marché de secondaire</p>
+	<h:graphicImage library="images" value="/resources/images/rainbow.jpg" >
+	<f:attribute name="height" value="100"/>   
+    <f:attribute name="width" value="100"/>
+    </h:graphicImage> 
+	<h:form>
+		<h:commandButton action="#{navigationController.showPage}" value="Login">
+			<f:param name="pageId" value="login" />
+		</h:commandButton>
+		<br/>
+		<h:commandButton action="#{navigationController.showPage}" value="Inscription d'une Société">
+			<f:param name="pageId" value="inscriptionSociete" />
+		</h:commandButton>
+		<br/>
+		<h:commandButton action="#{navigationController.showPage}" value="Autre">
+			<f:param name="pageId" value="3" />
+		</h:commandButton>
+=======
 	<h:outputStylesheet library='css' name='bootstrap.css' />
 	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
 	<!-- Le styles -->
@@ -128,6 +151,7 @@ body {
 
 
 		</div>
+>>>>>>> 6191b5fab328ef4c26029d0cb658e448a9a90357
 	</h:form>
 </h:body>
 </html>

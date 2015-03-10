@@ -41,7 +41,6 @@ public class AdministrateurTests{
     public void findAdminByID() {
 		admin = adminServ.findAdminByID(1);
 		Assert.assertEquals("DALMAT", admin.getNom());
-		
 		Assert.assertEquals("yann", admin.getLogin());
 	}
     
