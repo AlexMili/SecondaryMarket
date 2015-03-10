@@ -14,6 +14,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -21,7 +22,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ADMINISTRATEUR")
-@Inheritance(strategy = InheritanceType.JOINED)
+@PrimaryKeyJoinColumn(name = "id_administrateur", referencedColumnName = "Id_Utilisateur")
 @NamedQuery(name="Administrateur.findAdminByID", query="select u from Administrateur u where u.id=:id")
 public class Administrateur extends Utilisateur{
 	
