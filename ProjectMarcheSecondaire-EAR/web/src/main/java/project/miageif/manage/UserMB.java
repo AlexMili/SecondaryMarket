@@ -1,5 +1,7 @@
 package project.miageif.manage;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -19,6 +21,7 @@ import project.miageif.beans.Utilisateur.Status;
 import project.miageif.beans.Utilisateur.Type;
 import project.miageif.services.AdministrateurService;
 import project.miageif.services.InvestisseurService;
+import project.miageif.services.SocieteService;
 import project.miageif.services.UtilisateurService;
 import project.miageif.utilitaire.HibernateUtil;
 
@@ -37,6 +40,8 @@ public class UserMB {
 	private AdministrateurService AdminService;
 	@EJB
 	private InvestisseurService investService;
+	@EJB
+	private SocieteService societeService;
 
 	public UserMB() {
 		this.user = new Utilisateur();
@@ -120,14 +125,7 @@ public class UserMB {
 	}
 
 	public String createInvest(){
-		//investisseur.setType(Type.INVEST);
-		//userService.createUser(user);
-		//user=userService.findUserByLoginPass(user.getLogin(), user.getPassword());
-		//investisseur.setUser(user);
-		
 		investService.createInvest(investisseur);
-		investisseur = null;
-		investisseur = new Investisseur();
 		return "login";
 	}
 
@@ -147,6 +145,13 @@ public class UserMB {
 	@PostConstruct
 	private void pconstruct() {
 		System.out.println("PostConstructing Session Bean 1");
+		
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		HttpServletRequest servletRequest = (HttpServletRequest) ctx.getExternalContext().getRequest();
+		// returns something like "/myapplication/home.faces"
+		String fullURI = servletRequest.getRequestURI();
+
+		System.out.println("URL :"+fullURI);
 	}
 
 	/* Quand la session est détruite on met à jour le status en BD */
