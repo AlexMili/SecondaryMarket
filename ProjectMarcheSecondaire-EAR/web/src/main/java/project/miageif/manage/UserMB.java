@@ -74,7 +74,6 @@ public class UserMB {
 				.getSession(true);
 		session.setAttribute("CURRENT_USER", user);
 
-		isLogged = true;
 
 		if (user.getType().equals(Utilisateur.Type.ADMIN)) {
 			setAdmin(AdminService.findAdminByID(user.getId()));
@@ -82,6 +81,7 @@ public class UserMB {
 				return "/pages/public/loginError.xhtml?faces-redirect=true";
 			user.setStatus(Status.CONNECTED);
 			user = userService.userUpdate(user);
+			isLogged = true;
 			return "AdminConf";
 			// isConnected();
 		}
@@ -91,7 +91,9 @@ public class UserMB {
 			if (investisseur == null || investisseur.equals(null))
 				return "/pages/public/loginError.xhtml?faces-redirect=true";
 			user.setStatus(Status.CONNECTED);
+			investisseur.setStatus(Status.CONNECTED);
 			user = userService.userUpdate(user);
+			isLogged = true;
 			return "investisseur";
 			// isConnected();
 		}
@@ -112,14 +114,16 @@ public class UserMB {
 		session.removeAttribute("CURRENT_USER");
 		session.removeAttribute("userMB");
 		getRequest().getSession().invalidate();
+		System.out.println("******** Fin logout ****");
 		return "logout";
 	}
 
 	public String createInvest(){
-		user.setType(Type.INVEST);
-		userService.createUser(user);
-		user=userService.findUserByLoginPass(user.getLogin(), user.getPassword());
-		investisseur.setUser(user);
+		//investisseur.setType(Type.INVEST);
+		//userService.createUser(user);
+		//user=userService.findUserByLoginPass(user.getLogin(), user.getPassword());
+		//investisseur.setUser(user);
+		
 		investService.createInvest(investisseur);
 		return "login";
 	}

@@ -8,17 +8,20 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "UTILISATEUR")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name="Utilisateur.findUserByLoginPass", query="select u from Utilisateur u where u.login = :login "
 		+ "and u.password=:pass")
 public class Utilisateur {
+
+	public Utilisateur() {}
 	
 	@Table(name= "TYPE")
 	public static enum Type { ADMIN, INVEST, MEMBER}; 
@@ -31,33 +34,36 @@ public class Utilisateur {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Id_Utilisateur")
 	private Integer id;
+
+	@Override
+	public int hashCode() { return getId(); }
+	public void setId(int id) { this.id = id; }
+	public int getId() { return this.id; }
 	
 	@NotNull
 	private String login;
 
+	public String getLogin() { return this.login; }
+	public void setLogin(String login) { this.login = login; }
+	
 	@NotNull
 	private String password;
+
+	public String getPassword() { return this.password; }
+	public void setPassword(String password) { this.password = password; }
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Type type;
+
+	public Type getType() { return this.type; }
+	public void setType(Type type) { this.type = type; }
 	
 	@NotNull
 	@Enumerated(EnumType.ORDINAL)
 	private Status status=Status.DISCONNECTED;
 
-	public Utilisateur() {}
-
-	@Override
-	public int hashCode() {
-		return getId();
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getId() {
-		return id;
-	}
+	public Status getStatus() { return this.status; }
+	public void setStatus(Status status) { this.status = status; }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -68,46 +74,11 @@ public class Utilisateur {
 
 		return false;
 	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public void setType(Type type) {
-		this.type = type;
-	}
-	
-	public Type getType() {
-		return type;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
 	
 	@PreDestroy
-	public void cleanUp() throws Exception {
-	  this.status=Status.DISCONNECTED;
-	  System.out.println("Utilisateur détruit");
-	}
-	
-	
-	}
-
-
+	public void cleanUp() throws Exception
+	{
+		this.status=Status.DISCONNECTED;
+		System.out.println("Utilisateur détruit");
+	}	
+}
