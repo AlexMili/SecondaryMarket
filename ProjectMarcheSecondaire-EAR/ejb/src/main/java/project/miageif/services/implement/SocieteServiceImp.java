@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import project.miageif.beans.Administrateur;
 import project.miageif.beans.Investisseur;
@@ -37,7 +38,7 @@ public class SocieteServiceImp implements SocieteService {
 	}
 
 	@Override
-	public List getAllSocieteApprouvees() {
+	public Query getAllSocieteApprouvees() {
 		return societe.getAllSocieteApprouvees();
 	}
 }

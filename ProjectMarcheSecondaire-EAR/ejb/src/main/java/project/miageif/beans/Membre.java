@@ -1,71 +1,124 @@
 package project.miageif.beans;
 
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "MEMBRE")
-@PrimaryKeyJoinColumn(name = "id_membre", referencedColumnName = "Id_Utilisateur")
-@NamedQuery(name="Membre.findMembreByID", query="select u from Membre u where u.id=:id")
-public class Membre extends Utilisateur
-{
-	//private static final long serialVersionUID = 1L;
+@NamedQuery(name="Membre.findAdminByID", query="select u from Membre u where u.user.id=:id")
+public class Membre {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public static final String FIND_BY_ID = "Membre.findMembreByID";
-
-	public Membre() { setType(Type.MEMBER); }
+	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
 	
 	@Table(name= "APPROVAL")
 	public static enum Approval {WAITING, APPROVED};
+	
+	@Id @NotNull
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_membre")
+	private Integer id;
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
+	@OneToOne
+	@JoinColumn(name="Id_Utilisateur")
+	Utilisateur user;
+	
 	@NotNull
 	@Enumerated(EnumType.ORDINAL)
 	private Approval isApproved=Approval.WAITING;
 	
-	public void setApproval(Approval status) { this.isApproved = status; }
 	public Approval getApproval() { return this.isApproved; }
+	public void setApproval(Approval status) { this.isApproved = status; }
 	public boolean isApproved() { return this.isApproved == Approval.WAITING ? false : true; }
+	
 
 	@ManyToOne
 	@JoinColumn(name="id_societe")
 	Societe societe;
 	
-	public Societe getUser() { return this.societe; }
-	public void setUser(Societe soc) { this.societe = soc; }
-	
+	public Societe getSociete() { return this.societe; }
+	public void setSociete(Societe soc) { this.societe = soc; }
 	
 	private String nom;
-	
-	public String getNom() { return this.nom; }
-	public void setNom(String nom) { this.nom = nom; }
-	
-	
 	private String prenom;
-	
-	public String getPrenom() { return this.prenom; }
-	public void setPrenom(String prenom) { this.prenom = prenom; }
-	
-	
 	private String email;
 
-	public String getEmail() { return this.email; }
-	public void setEmail(String email) { this.email = email; }
+	public Membre() {}
+
+	@Override
+	public int hashCode() {
+		return getId();
+	}
 	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public Utilisateur getUser() {
+		return user;
+	}
+	
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Membre) {
-			Membre mbr = (Membre) obj;
-			return (mbr.getId()==getId());
+		if (obj instanceof Administrateur) {
+			Administrateur adm = (Administrateur) obj;
+			return (adm.getId()==getId());
 		}
 
 		return false;
-	}	
-}
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	}
+
+

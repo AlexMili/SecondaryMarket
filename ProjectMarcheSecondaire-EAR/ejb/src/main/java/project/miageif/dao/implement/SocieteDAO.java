@@ -26,18 +26,18 @@ public class SocieteDAO extends GenericDAO<Societe> {
 		 return super.findOneResult(Societe.FIND_BY_ID, parameters);
 	}
 	
-	public List getAllSocieteApprouvees(){
+	public Query getAllSocieteApprouvees(){
 		 Query result = null;
 
 		 try {
-			 result = super.getManager().createQuery("SELECT * FROM Societe u WHERE u.isApproved=1");
+			 result = getManager().createQuery("SELECT * FROM Societe u WHERE u.isApproved=1");
 		 }
 		 catch (Exception e) {
 				System.out.println("Error while running query: " + e.getMessage());
 				e.printStackTrace();
 		 }
 
-		 return result.getResultList();
+		 return result;
 	}
 	
 	public Societe societeUpdate(Societe u){

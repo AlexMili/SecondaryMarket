@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "INVESTISSEUR")
-@NamedQuery(name="Investisseur.findAdminByID", query="select u from Investisseur u where u.user.id=:id")
+@NamedQuery(name="Investisseur.findInvestID", query="select u from Investisseur u where u.user.id=:id")
 public class Investisseur {
 	
 	/**
