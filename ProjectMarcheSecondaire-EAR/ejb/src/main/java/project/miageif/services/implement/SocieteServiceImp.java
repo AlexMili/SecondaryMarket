@@ -38,7 +38,7 @@ public class SocieteServiceImp implements SocieteService {
 	}
 
 	@Override
-	public Query getAllSocieteApprouvees() {
+	public List getAllSocieteApprouvees() {
 		return societe.getAllSocieteApprouvees();
 	}
 }

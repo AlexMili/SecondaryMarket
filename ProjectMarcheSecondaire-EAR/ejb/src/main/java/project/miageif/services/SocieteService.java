@@ -15,5 +15,5 @@ public interface SocieteService {
  public Societe findSocieteByID(int id);
  public Societe updateSociete(Societe u);
  public void createSociete(Societe u);
- public Query getAllSocieteApprouvees();
+ public List getAllSocieteApprouvees();
 }
