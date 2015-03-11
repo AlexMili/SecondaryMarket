@@ -76,7 +76,8 @@ body {
 			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
 			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue sur le Panneaux de configaration.</p>
 			<hr/>
-			<p style="font-style: italic; font-weight: bold;">Nombre de Société à accréditer : </p>
+			<p style="font-style: italic; font-weight: bold;">Nombre de Société à accréditer :
+			<span style="color: red; font-weight: bold;">#{adminMB.nbProfileNoAcredite()}</span></p>
 			<p style="font-style: italic; font-weight: bold;">Nombre de profile à valider : </p>
 		</div>
 

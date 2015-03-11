@@ -1,6 +1,7 @@
 package project.miageif.dao.implement;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
@@ -27,5 +28,9 @@ public class InvestisseurDAO extends GenericDAO<Investisseur> {
 	
 	public void createInvest(Investisseur u){
 		super.save(u);
+	}
+	
+	public List<Investisseur> findAll(){
+		return super.findAll();
 	}
 }

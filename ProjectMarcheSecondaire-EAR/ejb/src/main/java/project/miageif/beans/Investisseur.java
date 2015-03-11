@@ -69,8 +69,8 @@ public class Investisseur {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Administrateur) {
-			Administrateur adm = (Administrateur) obj;
+		if (obj instanceof Investisseur) {
+			Investisseur adm = (Investisseur) obj;
 			return (adm.getId()==getId());
 		}
 
