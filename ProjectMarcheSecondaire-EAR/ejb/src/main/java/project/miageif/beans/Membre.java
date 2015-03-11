@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "MEMBRE")
-@NamedQuery(name="Membre.findAdminByID", query="select u from Membre u where u.user.id=:id")
+@NamedQuery(name="Membre.findMembreByID", query="select u from Membre u where u.user.id=:id")
 public class Membre {
 	
 	/**
@@ -26,7 +26,7 @@ public class Membre {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
+	public static final String FIND_BY_ID = "Investisseur.findMembreByID";
 	
 	@Table(name= "APPROVAL")
 	public static enum Approval {WAITING, APPROVED};
@@ -86,8 +86,8 @@ public class Membre {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Administrateur) {
-			Administrateur adm = (Administrateur) obj;
+		if (obj instanceof Membre) {
+			Membre adm = (Membre) obj;
 			return (adm.getId()==getId());
 		}
 
