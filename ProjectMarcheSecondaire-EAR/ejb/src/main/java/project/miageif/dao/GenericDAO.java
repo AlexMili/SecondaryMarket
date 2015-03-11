@@ -30,6 +30,8 @@ public abstract class GenericDAO<T> {
 	@PersistenceContext(unitName = UNIT_NAME)
 	private EntityManager em;
 
+	public EntityManager getManager() { return this.em; }
+	
 	private Class<T> entityClass;
 
 	public GenericDAO(Class<T> entityClass) {
