@@ -11,20 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "INVESTISSEUR")
 @NamedQuery(name="Investisseur.findAdminByID", query="select u from Investisseur u where u.user.id=:id")
 public class Investisseur {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
 	
 	@Table(name= "APPROVAL")

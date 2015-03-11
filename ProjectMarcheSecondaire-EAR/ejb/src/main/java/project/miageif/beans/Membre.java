@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MEMBRE")
-@PrimaryKeyJoinColumn(name = "id_membre", referencedColumnName = "Id_Utilisateur")
 @NamedQuery(name="Membre.findMembreByID", query="select u from Membre u where u.id=:id")
 public class Membre extends Utilisateur
 {
