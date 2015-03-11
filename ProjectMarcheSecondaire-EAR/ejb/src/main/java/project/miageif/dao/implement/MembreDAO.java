@@ -15,7 +15,7 @@ public class MembreDAO extends GenericDAO<Membre> {
 	public MembreDAO() {
 		super(Membre.class);
 	}
-
+	
 	public Membre findMembreByID(int id){
 		 Map<String, Object> parameters = new HashMap<String, Object>();
 		 parameters.put("id", id); 

@@ -121,6 +121,7 @@ public class UserMB {
 		user=userService.findUserByLoginPass(user.getLogin(), user.getPassword());
 		investisseur.setUser(user);
 		investService.createInvest(investisseur);
+		getRequest().getSession().invalidate();
 		return "login";
 	}
 

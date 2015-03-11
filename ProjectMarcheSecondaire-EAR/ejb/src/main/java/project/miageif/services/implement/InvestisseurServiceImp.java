@@ -1,5 +1,7 @@
 package project.miageif.services.implement;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -29,5 +31,10 @@ public class InvestisseurServiceImp implements InvestisseurService {
 	@Override
 	public void createInvest(Investisseur u) {
 		invest.createInvest(u);
+	}
+
+	@Override
+	public List<Investisseur> findAll() {
+		return invest.findAll();
 	}
 }
