@@ -15,10 +15,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "INVESTISSEUR")
-@NamedQuery(name="Investisseur.findInvestID", query="select u from Investisseur u where u.user.id=:id")
+@NamedQuery(name="Investisseur.findInvestByID", query="select u from Investisseur u where u.user.id=:id")
 public class Investisseur {
 	
-	public static final String FIND_BY_ID = "Investisseur.findAdminByID";
+	public static final String FIND_BY_ID = "Investisseur.findInvestByID";
 	
 	@Table(name= "APPROVAL")
 	public static enum Approval {WAITING, APPROVED};
@@ -69,8 +69,8 @@ public class Investisseur {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Administrateur) {
-			Administrateur adm = (Administrateur) obj;
+		if (obj instanceof Investisseur) {
+			Investisseur adm = (Investisseur) obj;
 			return (adm.getId()==getId());
 		}
 
