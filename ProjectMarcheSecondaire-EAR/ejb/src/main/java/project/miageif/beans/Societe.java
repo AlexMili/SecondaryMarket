@@ -73,7 +73,7 @@ public class Societe {
 		return isApproved;
 	}
 	
-	public void setIsApproved() {
-		this.isApproved = Approval.APPROVED;
+	public void setIsApproved(Approval isApproved) {
+		this.isApproved = isApproved;
 	}
 }

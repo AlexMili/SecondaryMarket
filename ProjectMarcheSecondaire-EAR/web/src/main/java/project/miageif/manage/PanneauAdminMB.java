@@ -53,6 +53,14 @@ public class PanneauAdminMB {
 		refreshPan();
 	}
 	
+	public void validatorS(){
+		for (Societe soc : societes) {
+			if(soc.getIsApproved().equals(Approval.APPROVED));
+			societeService.updateSociete(soc);
+		}
+		refreshPan();
+	}
+	
 	public int getNbSocieteToCheck() {
 		init();
 		int i = 0;

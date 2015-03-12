@@ -78,8 +78,7 @@ body {
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
 			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
-			<p style="color: blue; font-style: italic; font-weight: bold;">Valider
-				le profil des Investisseurs et des Membres de Sociétés.</p>
+			<p style="color: blue; font-style: italic; font-weight: bold;">Accréditer les Sociétés.</p>
 			<hr />
 			<!-- 			<h:outputLink styleClass="btn btn-small btn-success" -->
 			<!-- 				action="#{panneauAdminMB.refreshPan()}">Refresh</h:outputLink> -->
@@ -88,14 +87,10 @@ body {
 			<div class="tabbable">
 				<!-- Only required for left/right tabs -->
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">Investisseurs à approuver
+					<li class="active"><a href="#tab1" data-toggle="tab">List des Sociétés à acréditer
 					</a></li>
-					<li><a href="#tab2" data-toggle="tab">Membres société à approuver</a></li>
-					<li><a href="#tab3" data-toggle="tab">Liste de tous les Investisseurs approuvés
-					</a></li>
-					<li><a href="#tab4" data-toggle="tab">Liste de tous les Membres de société approuvés</a></li>
+					<li><a href="#tab2" data-toggle="tab">List des Sociétés acrédités</a></li>
 				</ul>
-				
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab1">
 						<!-- 						tab des invest -->
@@ -104,47 +99,47 @@ body {
 							<table class="table">
 								<tr style="font-weight: bold;">
 									<td>Nom</td>
-									<td>Prénom</td>
+									<td>Adresse</td>
 									<td>Email</td>
+									<td>Code Postale</td>
+									<td>Telephone</td>
+									<td>ville</td>
 									<td>Status</td>
-									<td>Approuver</td>
 									<td>Valider</td>
 								</tr>
-								<c:set var="buttonVal1" value="false"/>
-								<c:forEach var="item" items="#{panneauAdminMB.invests}">
+								<c:set var="buttonVal3" value="false"/>
+								<c:forEach var="item" items="#{panneauAdminMB.societes}">
 
 									<c:if test="#{item.isApproved == 'WAITING'}">
-									<c:set var="buttonVal1" value="true"/>
+									<c:set var="buttonVal3" value="true"/>
 										<tr>
 											<td><h:outputText value="${item.nom}" /></td>
-											<td><h:outputText value="${item.prenom}" /></td>
+											<td><h:outputText value="${item.adresse}" /></td>
 											<td><h:outputText value="${item.email}" /></td>
-											<td><h:outputText value="${item.user.type}" /></td>
+											<td><h:outputText value="${item.codePostal}" /></td>
+											<td><h:outputText value="#{item.telephone}" /></td>
+											<td><h:outputText value="#{item.ville}" /></td>
 											<td><h:selectOneMenu value="#{item.isApproved}">
 													<f:selectItem itemValue="WAITING" itemLabel="WAITING" />
 													<f:selectItem itemValue="APPROVED" itemLabel="APPROVED" />
 												</h:selectOneMenu></td>
-
 										</tr>
-
 									</c:if>
 								</c:forEach>
 								<tr>
-									<td>
-<!-- 									<h:commandButton -->
-<!-- 											styleClass="btn btn-large btn-success" value="Retour" -->
-<!-- 											action="#{navigationController.pageAcceuil()}" /> -->
-											</td>
+									<td></td>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
 									<td>
-									<c:if test="#{buttonVal1==true}">
+									<c:if test="#{buttonVal3==true}">
 									<h:commandButton
 											styleClass="btn btn-large btn-primary" value="Valider"
-											action="#{panneauAdminMB.validatorI()}" />
-									</c:if>
+											action="#{panneauAdminMB.validatorS()}" />
+											</c:if>
 											</td>
 								</tr>
 
@@ -160,125 +155,33 @@ body {
 							<table class="table">
 								<tr style="font-weight: bold;">
 									<td>Nom</td>
-									<td>Prénom</td>
+									<td>Adresse</td>
 									<td>Email</td>
+									<td>Code Postale</td>
+									<td>Telephone</td>
+									<td>Ville</td>
 									<td>Status</td>
-									<td>Approuver</td>
-									<td>Valider</td>
-								</tr>
-								<c:set var="buttonVal2" value="false"/>
-								<c:forEach var="item1" items="#{panneauAdminMB.membres}">
-
-									<c:if test="#{item1.isApproved == 'WAITING'}">
-									<c:set var="buttonVal2" value="true"/>
-										<tr>
-											<td><h:outputText value="${item1.nom}" /></td>
-											<td><h:outputText value="${item1.prenom}" /></td>
-											<td><h:outputText value="${item1.email}" /></td>
-											<td><h:outputText value="${item1.user.type}" /></td>
-											<td><h:selectOneMenu value="#{item1.isApproved}">
-													<f:selectItem itemValue="WAITING" itemLabel="WAITING" />
-													<f:selectItem itemValue="APPROVED" itemLabel="APPROVED" />
-												</h:selectOneMenu></td>
-
-										</tr>
-
-									</c:if>
-								</c:forEach>
-								<tr>
-									<td>
-<!-- 									<h:commandButton -->
-<!-- 											styleClass="btn btn-large btn-success" value="Retour" -->
-<!-- 											action="#{navigationController.pageAcceuil()}" /> -->
-											</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-									<c:if test="#{buttonVal2==true}">
-									<h:commandButton
-											styleClass="btn btn-large btn-primary" value="Valider"
-											action="#{panneauAdminMB.validatorM()}" />
-									</c:if>
-									</td>
 								</tr>
 
-							</table>
-						</h:form>
-					</div>
-					
-					<div class="tab-pane" id="tab3">
-						<!-- 						tab des invest -->
+								<c:forEach var="item1" items="#{panneauAdminMB.societes}">
 
-						<h:form>
-							<table class="table">
-								<tr style="font-weight: bold;">
-									<td>Nom</td>
-									<td>Prénom</td>
-									<td>Email</td>
-									<td>Status</td>
-									<td>Approuver</td>
-								</tr>
-
-								<c:forEach var="item" items="#{panneauAdminMB.invests}">
-
-									<c:if test="#{item.isApproved == 'APPROVED'}">
-										<tr>
-											<td><h:outputText value="${item.nom}" /></td>
-											<td><h:outputText value="${item.prenom}" /></td>
-											<td><h:outputText value="${item.email}" /></td>
-											<td><h:outputText value="${item.user.type}" /></td>
-											<td><h:outputText value="#{item.isApproved}" /></td>
-										</tr>
-
-									</c:if>
-								</c:forEach>
-								<tr>
-									<td>
-<!-- 									<h:commandButton -->
-<!-- 											styleClass="btn btn-large btn-success" value="Retour" -->
-<!-- 											action="#{navigationController.pageAcceuil()}" /> -->
-											</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-
-							</table>
-						</h:form>
-					</div>
-					<!-- 					Panneaux tab Membre soiété -->
-					<div class="tab-pane" id="tab4">
-
-						<h:form>
-							<table class="table">
-								<tr style="font-weight: bold;">
-									<td>Nom</td>
-									<td>Prénom</td>
-									<td>Email</td>
-									<td>Status</td>
-									<td>Approuver</td>
-								</tr>
-
-								<c:forEach var="item1" items="#{panneauAdminMB.membres}">
 									<c:if test="#{item1.isApproved == 'APPROVED'}">
 										<tr>
 											<td><h:outputText value="${item1.nom}" /></td>
-											<td><h:outputText value="${item1.prenom}" /></td>
+											<td><h:outputText value="${item1.adresse}" /></td>
 											<td><h:outputText value="${item1.email}" /></td>
-											<td><h:outputText value="${item1.user.type}" /></td>
+											<td><h:outputText value="${item1.codePostal}" /></td>
+											<td><h:outputText value="#{item1.telephone}" /></td>
+											<td><h:outputText value="#{item1.ville}" /></td>
 											<td><h:outputText value="#{item1.isApproved}" /></td>
 										</tr>
+
 									</c:if>
 								</c:forEach>
 								<tr>
-									<td>
-<!-- 									<h:commandButton -->
-<!-- 											styleClass="btn btn-large btn-success" value="Retour" -->
-<!-- 											action="#{navigationController.pageAcceuil()}" /> -->
-											</td>
+									<td></td>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -287,6 +190,8 @@ body {
 
 							</table>
 						</h:form>
+
+
 					</div>
 				</div>
 			</div>

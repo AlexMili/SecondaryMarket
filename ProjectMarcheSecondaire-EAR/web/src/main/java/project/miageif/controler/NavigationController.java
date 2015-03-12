@@ -41,6 +41,10 @@ public class NavigationController implements Serializable {
 	      return "validator";
    }
    
+   public String soc_validator(){
+	      return "soc_validator";
+}
+   
    
 //   public String showPage(){
 //      if(pageId == null){
