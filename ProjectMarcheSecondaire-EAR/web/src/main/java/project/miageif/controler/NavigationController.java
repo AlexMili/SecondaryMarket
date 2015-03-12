@@ -22,9 +22,9 @@ public class NavigationController implements Serializable {
       return "acceuil";
    }
    
-   public String logout(){
-	      return "faces-redirect=true";
-	   }
+   public String refreshPan(){
+	   return "refresh";
+   }
    
    public String pageLogin(){
 	      return "login";
@@ -36,6 +36,10 @@ public class NavigationController implements Serializable {
    public String pageInscriptionInvest(){
 	      return "inscriptionInvestisseur";
 	   }
+   
+   public String mm_inv_validator(){
+	      return "validator";
+   }
    
    
 //   public String showPage(){

@@ -1,5 +1,7 @@
 package project.miageif.services;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import project.miageif.beans.Administrateur;
@@ -12,4 +14,5 @@ public interface MembreService {
  public Membre findMembreByID(int id);
  public Membre updateMembre(Membre u);
  public void createMembre(Membre u);
+ public List<Membre> findAll();
 }

@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import project.miageif.beans.Investisseur;
 import project.miageif.beans.Membre;
 import project.miageif.beans.Societe;
+import project.miageif.beans.Utilisateur.Approval;
 import project.miageif.dao.GenericDAO;
 
 @Stateless
@@ -41,12 +42,15 @@ public class SocieteDAO extends GenericDAO<Societe> {
 			 for(int i=0;i<resultTmp.size();i++)
 			 {
 				 Societe so = (Societe) resultTmp.get(i);
-				 if(so.isApproved())
+				 if(so.getIsApproved().equals(Approval.APPROVED))
 					 result.add(so);
 			 }
 		 }
 
 		 return result;
+	}
+	public List<Societe> findAll(){
+		return super.findAll();
 	}
 	
 	public Societe societeUpdate(Societe u){

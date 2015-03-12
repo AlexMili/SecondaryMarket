@@ -51,4 +51,7 @@ public class SocieteServiceImp implements SocieteService {
 	public List getAllSocieteApprouvees() {
 		return societe.getAllSocieteApprouvees();
 	}
+	public List<Societe> findAll() {
+		return societe.findAll();
+	}
 }

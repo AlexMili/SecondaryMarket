@@ -54,6 +54,34 @@
 			<to-view-id>/pages/public/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>validator</from-outcome>
+			<to-view-id>/pages/protected/admin/mb_inv_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/protected/admin/mb_inv_validator.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>refresh</from-outcome>
+			<to-view-id>/pages/protected/admin/mb_inv_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 <!-- 	panneau investisseur -->
 	<navigation-rule>

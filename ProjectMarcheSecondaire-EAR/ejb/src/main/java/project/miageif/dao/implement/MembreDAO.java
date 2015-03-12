@@ -1,6 +1,7 @@
 package project.miageif.dao.implement;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
@@ -28,5 +29,8 @@ public class MembreDAO extends GenericDAO<Membre> {
 	
 	public void createMembre(Membre u){
 		super.save(u);
+	}
+	public List<Membre> findAll(){
+		return super.findAll();
 	}
 }

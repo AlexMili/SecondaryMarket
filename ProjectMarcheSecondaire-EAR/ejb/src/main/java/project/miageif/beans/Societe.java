@@ -11,6 +11,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import project.miageif.beans.Utilisateur.Approval;
+
+
 @Entity
 @Table(name = "SOCIETE")
 @NamedQuery(name="Societe.findSocieteByID", query="select u from Societe u where u.id=:id")
@@ -28,19 +31,10 @@ public class Societe {
 	public void setId(int id) { this.id = id; }
 	public int getId() { return this.id; }
 	
-
-	@Table(name= "APPROVAL")
-	public static enum Approval {WAITING, APPROVED};
-
 	@NotNull
 	@Enumerated(EnumType.ORDINAL)
 	private Approval isApproved=Approval.WAITING;
-	
-	public void setApproval(Approval status) { this.isApproved = status; }
-	public Approval getApproval() { return this.isApproved; }
-	public boolean isApproved() { return this.isApproved == Approval.WAITING ? false : true; }
-	
-	
+
 	private String nom;
 	
 	public String getNom() { return this.nom; }
@@ -74,4 +68,12 @@ public class Societe {
 	
 	public int getTelephone() { return this.telephone; }
 	public void setTelephone(int tel) { this.telephone = tel; }
+	
+	public Approval getIsApproved() {
+		return isApproved;
+	}
+	
+	public void setIsApproved() {
+		this.isApproved = Approval.APPROVED;
+	}
 }

@@ -1,5 +1,7 @@
 package project.miageif.services.implement;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -32,5 +34,10 @@ public class MembreServiceImp implements MembreService {
 	@Override
 	public void createMembre(Membre u) {
 		membre.createMembre(u);
+	}
+	
+	@Override
+	public List<Membre> findAll() {
+		return membre.findAll();
 	}
 }
