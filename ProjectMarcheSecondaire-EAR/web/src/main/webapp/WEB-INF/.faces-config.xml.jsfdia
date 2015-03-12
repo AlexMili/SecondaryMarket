@@ -8,9 +8,9 @@
     NAME="output" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="inscriptionSociete::#pages#public#newSociety.xhtml"
-    NAME="output1" PATH="/pages/public/newSociety.xhtml"
-    TARGET="rules:#pages#public#newSociety.xhtml"
+    ID="inscriptionSociete::#pages#public#inscriptionSociete.xhtml"
+    NAME="output1" PATH="/pages/public/inscriptionSociete.xhtml"
+    TARGET="rules:#pages#public#inscriptionSociete.xhtml"
     TITLE="inscriptionSociete" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="inscriptionInvestisseur::#pages#public#inscriptionInvestisseur.xhtml"
@@ -72,8 +72,6 @@
     TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#public#newSociety.xhtml"
-  PATH="/pages/public/newSociety.xhtml" SHAPE="976,17,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
   NAME="rules:#pages#protected#investisseur#investisseur.xhtml"
   PATH="/pages/protected/investisseur/investisseur.xhtml"
@@ -86,4 +84,6 @@
     TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#inscriptionSociete.xhtml"
+  PATH="/pages/public/inscriptionSociete.xhtml" SHAPE="1024,17,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

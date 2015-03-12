@@ -70,10 +70,34 @@ public class SocieteTest{
     	Assert.assertNotEquals(null, newmySociete);
     	Assert.assertEquals("Paris", newmySociete.getVille());
     	
-    	/*societeServ.deleteSociete(mySociete);
+    	societeServ.deleteSociete(mySociete);
 
     	mySociete = societeServ.findSocieteByName("Enterprise");
-    	Assert.assertEquals(null, mySociete);*/
+    	Assert.assertEquals(null, mySociete);
     }
     
+    @Test
+    public void testSocieteUpdate()
+    {
+    	Societe mySociete = new Societe();
+    	mySociete.setAdresse("42 place du marechal");
+    	mySociete.setCodePostal(75016);
+    	mySociete.setVille("Paris");
+    	mySociete.setNom("Enterprise");
+    	mySociete.setEmail("societe@awesome.com");
+    	mySociete.setTelephone(123789436);
+    	societeServ.createSociete(mySociete);
+    	
+    	mySociete.setNom("Change Test");
+    	societeServ.updateSociete(mySociete);
+    	Societe newmySociete = societeServ.findSocieteByName("Change Test");
+
+    	Assert.assertNotEquals(null, newmySociete);
+    	Assert.assertEquals("Paris", newmySociete.getVille());
+    	
+    	societeServ.deleteSociete(mySociete);
+
+    	mySociete = societeServ.findSocieteByName("Enterprise");
+    	Assert.assertEquals(null, mySociete);
+    }
 }

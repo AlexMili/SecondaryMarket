@@ -1,5 +1,7 @@
 package project.miageif.manage;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -14,11 +16,13 @@ import org.hibernate.Session;
 
 import project.miageif.beans.Administrateur;
 import project.miageif.beans.Investisseur;
+import project.miageif.beans.Societe;
 import project.miageif.beans.Utilisateur;
 import project.miageif.beans.Utilisateur.Status;
 import project.miageif.beans.Utilisateur.Type;
 import project.miageif.services.AdministrateurService;
 import project.miageif.services.InvestisseurService;
+import project.miageif.services.SocieteService;
 import project.miageif.services.UtilisateurService;
 import project.miageif.utilitaire.HibernateUtil;
 
@@ -29,6 +33,7 @@ public class UserMB {
 	private Utilisateur user;
 	private Administrateur Admin;
 	private Investisseur investisseur;
+	private List<Societe> listSociete;
 	private boolean isLogged = false;
 
 	@EJB
@@ -37,10 +42,13 @@ public class UserMB {
 	private AdministrateurService AdminService;
 	@EJB
 	private InvestisseurService investService;
+	@EJB
+	private SocieteService societeService;
 
 	public UserMB() {
 		this.user = new Utilisateur();
 		this.investisseur = new Investisseur();
+		this.listSociete = societeService.getAllSocieteApprouvees();
 	}
 
 	public Utilisateur getUser() {
@@ -50,7 +58,10 @@ public class UserMB {
 	public Administrateur getAdmin() {
 		return Admin;
 	}
-
+	
+	public List<Societe> getListSociete() { return this.listSociete; }
+	public void setListSociete(List<Societe> lis) { this.listSociete = lis; }
+	
 	/* Permet à l'administrateur de se connecter */
 	public String login() {
 		if (user == null || user.getLogin().equals(" ")

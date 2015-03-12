@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+}
+
+.form-signin {
+	max-width: 300px;
+	padding: 19px 29px 29px;
+	margin: 0 auto 20px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin input[type="text"], .form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+</style>
+</h:head>
+<h:body>
+	<div class="container">
+		<h1 class="text-info text-center">Inscription membre société</h1>
+		<hr></hr>
+		<h:form styleClass="form-signin">
+			<table>
+				<tr>
+					<td><p>Societe :</p></td>
+					<td><h:selectOneMenu value="#{userMB.listSociete}">
+						    <f:selectItems value="#{userMB.listSociete}" var="_societe" itemValue="#{_societe.id}" itemLabel="#{_societe.nom}"/> />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td>
+						
+					</td>
+					<td> 
+					<div class="submit">
+							<h:messages globalOnly="true" infoClass="info" />
+							<h:commandButton styleClass="btn btn-large btn-primary" value="Inscription"
+								action="" />
+						</div>
+					</td>
+				</tr>
+
+			</table>
+			<br/>
+			<p><h:outputLink styleClass="info" value="#{navigationController.pageAcceuil()}">Retour à l'accueil</h:outputLink></p>
+		</h:form>
+	</div>
+	<!-- /container -->
+</h:body>
+</html>
