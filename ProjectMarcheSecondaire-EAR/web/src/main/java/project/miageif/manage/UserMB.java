@@ -48,7 +48,6 @@ public class UserMB {
 	public UserMB() {
 		this.user = new Utilisateur();
 		this.investisseur = new Investisseur();
-		this.listSociete = societeService.getAllSocieteApprouvees();
 	}
 
 	public Utilisateur getUser() {
