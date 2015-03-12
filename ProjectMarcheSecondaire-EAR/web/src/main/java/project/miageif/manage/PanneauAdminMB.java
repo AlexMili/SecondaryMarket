@@ -10,31 +10,64 @@ import javax.faces.bean.SessionScoped;
 import org.hibernate.Session;
 
 import project.miageif.beans.Investisseur;
+import project.miageif.beans.Investisseur.Approval;
+import project.miageif.beans.Societe;
 import project.miageif.services.InvestisseurService;
+import project.miageif.services.SocieteService;
 import project.miageif.utilitaire.HibernateUtil;
 
-@ManagedBean(name = "adminMB")
+@ManagedBean(name = "panneauAdminMB")
 @SessionScoped
 public class PanneauAdminMB {
 	
-	private List<Investisseur> invest;
+	private List<Investisseur> invests;
+	private List<Societe> societes;
+	
 	@EJB
 	private InvestisseurService investService;
+	@EJB
+	private SocieteService societeService;
+	
+	private int nbProfileToCheck;
+	private int nbSocieteToCheck;
 	
 	@PostConstruct
 	public void init() {
-		invest = investService.findAll();
+		invests = investService.findAll();
+		societes = societeService.findAll();
 	}
 	
-	
-	public String nbProfileNoAcredite(){
-		return ""+invest.size();
+	public void validatorI(){
+		for (Investisseur investisseur : invests) {
+			System.out.println("Nom : "+investisseur.getNom() + " approuve = "+investisseur.getIsApproved());
+		}
 	}
 	
-	public void setInvest(List<Investisseur> invest) {
-		this.invest = invest;
+	public int getNbSocieteToCheck() {
+		int i = 0;
+		for (Societe soc : societes) {
+			if(soc.getIsApproved().equals(Approval.WAITING))
+				i++;
+		}
+		nbSocieteToCheck=i;
+		return nbSocieteToCheck;
 	}
 	
+	public int getNbProfileToCheck() {
+		int i = 0;
+		for (Investisseur investisseur : invests) {
+			if(investisseur.getIsApproved().equals(Approval.WAITING))
+				i++;
+		}
+		nbProfileToCheck=i;
+		return nbProfileToCheck;
+	}
 	
+	public List<Investisseur> getInvests() {
+		return invests;
+	}
 	
+	public List<Societe> getSocietes() {
+		return societes;
+	}
 }

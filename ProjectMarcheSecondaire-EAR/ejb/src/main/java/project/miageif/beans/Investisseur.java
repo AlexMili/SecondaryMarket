@@ -1,5 +1,6 @@
 package project.miageif.beans;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -21,6 +22,7 @@ public class Investisseur {
 	public static final String FIND_BY_ID = "Investisseur.findInvestByID";
 	
 	@Table(name= "APPROVAL")
+	
 	public static enum Approval {WAITING, APPROVED};
 	
 	@Id @NotNull
@@ -99,6 +101,14 @@ public class Investisseur {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Approval getIsApproved() {
+		return isApproved;
+	}
+	
+	public void setIsApproved(Approval p) {
+		this.isApproved = p;
 	}
 	
 	

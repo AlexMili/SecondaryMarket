@@ -74,4 +74,8 @@ public class Societe {
 	
 	public int getTelephone() { return this.telephone; }
 	public void setTelephone(int tel) { this.telephone = tel; }
+	
+	public Approval getIsApproved() {
+		return isApproved;
+	}
 }

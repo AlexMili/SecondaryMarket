@@ -4,6 +4,7 @@
 <html xmlns='http://www.w3.org/1999/xhtml'
 	xmlns:f='http://java.sun.com/jsf/core'
 	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
 	<!-- css -->
@@ -57,9 +58,8 @@ body {
 								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
 						</p>
 						<ul class="nav">
-							<li>
-							<h:commandLink
-								action="#{navigationController.pageAcceuil()}" value="Home"></h:commandLink>
+							<li><h:commandLink
+									action="#{navigationController.pageAcceuil()}" value="Home"></h:commandLink>
 							</li>
 							<li><a href="#about">About</a></li>
 							<li><a href="#contact">Contact</a></li>
@@ -78,52 +78,51 @@ body {
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
 			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
-			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue
-				sur le Panneaux de configaration.</p>
+			<p style="color: blue; font-style: italic; font-weight: bold;">Valider
+				le profil des utilisateurs et des Membres de Sociétés.</p>
 			<hr />
-			<p style="font-style: italic; font-weight: bold;">
-				Nombre de Société à accréditer : <span
-					style="color: red; font-weight: bold;">#{panneauAdminMB.nbSocieteToCheck}</span>
-			</p>
-			<p style="font-style: italic; font-weight: bold;">
-				Nombre de profile à valider : 
-				<span style="color: red; font-weight: bold;">#{panneauAdminMB.nbProfileToCheck}</span>
-			</p>
 		</div>
-
-		<!-- Example row of columns -->
-		<h:form>
-		<div class="row">
-			<div class="span4">
-				<h2>Sociétés</h2>
-				<p>Consulter la liste des sociétés et leur informations.
-					Acrédité les sociétés disponible sur la platform.</p>
-				<p>
-					<a class="btn btn-primary" href="#">GO</a>
-				</p>
-			</div>
-			
-			<div class="span4">
-				<h2>Investisseurs/Membres</h2>
-				<p>Consulter le profile des utilisateurs que ce soit un
-					Investisseur ou un Membre de société.</p>
-				<p>
-<!-- 					<a class="btn btn-primary" href="#">GO</a> -->
-					<h:commandLink styleClass="btn btn-primary"
-								action="#{navigationController.mm_inv_validator()}" value="GO"></h:commandLink>
-				</p>
-			</div>
-			<div class="span4">
-				<h2>Offre achat/vente</h2>
-				<p>Consulter les différentes offres de Achat/Vente de produits
-					en cours.</p>
-				<p>
-					<a class="btn btn-primary" href="#">GO</a>
-				</p>
-			</div>
-		</div>
-		</h:form>
+		<center>
+			<h:form>
+				<table class="table">
+					<tr style="font-weight: bold;">
+						<td>Nom</td>
+						<td>Prénom</td>
+						<td>Email</td>
+						<td>Status</td>
+<!-- 						<td>Approuver</td> -->
+					</tr>
+					<c:forEach var="item" items="#{panneauAdminMB.invests}">
+						<tr>
+							<td><h:outputText value="${item.nom}" /></td>
+							<td><h:outputText value="${item.prenom}" /></td>
+							<td><h:outputText value="${item.email}" /></td>
+							<td><h:outputText value="${item.user.type}" /></td>
+<!-- 							<td><h:outputText value="${item.isApproved}" /></td> -->
+							<td><h:selectOneMenu value="#{item.isApproved}">
+									<f:selectItem itemValue="WAITING"
+										itemLabel="WAITING" />
+									<f:selectItem itemValue="APPROVED"
+										itemLabel="APPROVED" />
+								</h:selectOneMenu></td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+						<h:commandButton styleClass="btn btn-large btn-primary" value="Valider"
+								action="#{panneauAdminMB.validatorI()}" />
+						</td>
+						</tr>
+				</table>
+			</h:form>
+		</center>
+		<hr />
 	</div>
+
 	<!-- /container -->
 </body>
 <h:outputScript target="head">

@@ -49,6 +49,16 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
     NAME="output" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="validator::#pages#protected#admin#mb_inv_validator.xhtml"
+    NAME="output1" PATH="/pages/protected/admin/mb_inv_validator.xhtml"
+    TARGET="rules:#pages#protected#admin#mb_inv_validator.xhtml"
+    TITLE="validator" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="accueil::#pages#protected#admin#configuration.xhtml"
+    NAME="output2" PATH="/pages/protected/admin/configuration.xhtml"
+    TARGET="rules:#pages#protected#admin#configuration.xhtml"
+    TITLE="accueil" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#public#loginError.xhtml"
@@ -84,6 +94,20 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
     NAME="output" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#mb_inv_validator.xhtml"
+  PATH="/pages/protected/admin/mb_inv_validator.xhtml"
+  SHAPE="288,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#protected#admin#mb_inv_validator.xhtml:0"
+   NAME="item" PATH="/pages/protected/admin/mb_inv_validator.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="acceuil::#pages#protected#admin#configuration.xhtml"
+    NAME="output" PATH="/pages/protected/admin/configuration.xhtml"
+    TARGET="rules:#pages#protected#admin#configuration.xhtml"
+    TITLE="acceuil" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
