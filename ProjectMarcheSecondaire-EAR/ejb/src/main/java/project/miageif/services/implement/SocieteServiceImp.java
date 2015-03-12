@@ -26,6 +26,11 @@ public class SocieteServiceImp implements SocieteService {
 	public Societe findSocieteByID(int id) {
 		return societe.findSocieteByID(id);
 	}
+	
+	@Override
+	public Societe findSocieteByName(String name) {
+		return societe.findSocieteByName(name);
+	}
 
 	@Override
 	public Societe updateSociete(Societe u) {
@@ -37,6 +42,11 @@ public class SocieteServiceImp implements SocieteService {
 		societe.createSociete(u);
 	}
 
+	@Override
+	public void deleteSociete(Societe u) {
+		societe.delete(u);
+	}
+	
 	@Override
 	public List getAllSocieteApprouvees() {
 		return societe.getAllSocieteApprouvees();

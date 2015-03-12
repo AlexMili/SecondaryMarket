@@ -13,7 +13,9 @@ import project.miageif.beans.Utilisateur;
 @Local
 public interface SocieteService {
  public Societe findSocieteByID(int id);
+ public Societe findSocieteByName(String name);
  public Societe updateSociete(Societe u);
  public void createSociete(Societe u);
+ public void deleteSociete(Societe u);
  public List getAllSocieteApprouvees();
 }
