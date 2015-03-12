@@ -26,6 +26,12 @@ public class SocieteDAO extends GenericDAO<Societe> {
 		 return super.findOneResult(Societe.FIND_BY_ID, parameters);
 	}
 	
+	public Societe findSocieteByName(String name){
+		 Map<String, Object> parameters = new HashMap<String, Object>();
+		 parameters.put("name", name); 
+		 return super.executeQuery("SELECT s FROM Societe s WHERE s.nom=:name", parameters);
+	}
+	
 	public List<?> getAllSocieteApprouvees(){
 		 List<?> resultTmp = super.findAll();
 		 List<Societe> result = new ArrayList<Societe>();
