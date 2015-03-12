@@ -22,6 +22,10 @@ public class NavigationController implements Serializable {
       return "acceuil";
    }
    
+   public String refreshPan(){
+	   return "refresh";
+   }
+   
    public String pageLogin(){
 	      return "login";
 	   }

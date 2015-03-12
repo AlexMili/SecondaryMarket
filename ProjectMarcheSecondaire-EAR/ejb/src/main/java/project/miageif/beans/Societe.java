@@ -78,4 +78,8 @@ public class Societe {
 	public Approval getIsApproved() {
 		return isApproved;
 	}
+	
+	public void setIsApproved() {
+		this.isApproved = Approval.APPROVED;
+	}
 }

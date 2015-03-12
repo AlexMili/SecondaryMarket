@@ -39,11 +39,14 @@ public class PanneauAdminMB {
 	
 	public void validatorI(){
 		for (Investisseur investisseur : invests) {
-			System.out.println("Nom : "+investisseur.getNom() + " approuve = "+investisseur.getIsApproved());
+			if(investisseur.getIsApproved().equals(Approval.APPROVED));
+			investService.updateInvest(investisseur);
 		}
+		refreshPan();
 	}
 	
 	public int getNbSocieteToCheck() {
+		init();
 		int i = 0;
 		for (Societe soc : societes) {
 			if(soc.getIsApproved().equals(Approval.WAITING))
@@ -54,6 +57,7 @@ public class PanneauAdminMB {
 	}
 	
 	public int getNbProfileToCheck() {
+		init();
 		int i = 0;
 		for (Investisseur investisseur : invests) {
 			if(investisseur.getIsApproved().equals(Approval.WAITING))
@@ -70,4 +74,10 @@ public class PanneauAdminMB {
 	public List<Societe> getSocietes() {
 		return societes;
 	}
+	 public String refreshPan(){
+		   invests.clear();;
+		   societes.clear(); 
+		   init();
+		   return "refresh";
+	   }
 }

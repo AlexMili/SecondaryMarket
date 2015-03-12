@@ -108,6 +108,11 @@
     NAME="output" PATH="/pages/protected/admin/configuration.xhtml"
     TARGET="rules:#pages#protected#admin#configuration.xhtml"
     TITLE="acceuil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="refresh::#pages#protected#admin#mb_inv_validator.xhtml"
+    NAME="output1" PATH="/pages/protected/admin/mb_inv_validator.xhtml"
+    TARGET="rules:#pages#protected#admin#mb_inv_validator.xhtml"
+    TITLE="refresh" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
