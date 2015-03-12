@@ -18,6 +18,5 @@ property name="hbm2ddl.auto">create</property -->
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <mapping class="project.miageif.beans.Administrateur"/>
   <mapping class="project.miageif.beans.Utilisateur"/>
-  <mapping class="project.miageif.beans.Investisseur"/>
  </session-factory>
 </hibernate-configuration>
