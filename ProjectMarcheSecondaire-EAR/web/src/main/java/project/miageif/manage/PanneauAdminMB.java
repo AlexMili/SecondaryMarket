@@ -7,14 +7,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import org.hibernate.Session;
-
 import project.miageif.beans.Investisseur;
-import project.miageif.beans.Investisseur.Approval;
+import project.miageif.beans.Membre;
 import project.miageif.beans.Societe;
+import project.miageif.beans.Utilisateur.Approval;
 import project.miageif.services.InvestisseurService;
+import project.miageif.services.MembreService;
 import project.miageif.services.SocieteService;
-import project.miageif.utilitaire.HibernateUtil;
 
 @ManagedBean(name = "panneauAdminMB")
 @SessionScoped
@@ -22,19 +21,20 @@ public class PanneauAdminMB {
 	
 	private List<Investisseur> invests;
 	private List<Societe> societes;
+	private List<Membre> membres;
 	
 	@EJB
 	private InvestisseurService investService;
 	@EJB
 	private SocieteService societeService;
-	
-	private int nbProfileToCheck;
-	private int nbSocieteToCheck;
+	@EJB
+	private MembreService memberService;
 	
 	@PostConstruct
 	public void init() {
 		invests = investService.findAll();
 		societes = societeService.findAll();
+		membres = memberService.findAll();
 	}
 	
 	public void validatorI(){
@@ -45,26 +45,43 @@ public class PanneauAdminMB {
 		refreshPan();
 	}
 	
+	public void validatorM(){
+		for (Membre memb : membres) {
+			if(memb.getIsApproved().equals(Approval.APPROVED));
+			memberService.updateMembre(memb);
+		}
+		refreshPan();
+	}
+	
 	public int getNbSocieteToCheck() {
 		init();
 		int i = 0;
 		for (Societe soc : societes) {
+			if(soc.getIsApproved().equals(Approval.WAITING))System.out.println("************* VALEUR "+soc.getIsApproved());
 			if(soc.getIsApproved().equals(Approval.WAITING))
 				i++;
 		}
-		nbSocieteToCheck=i;
-		return nbSocieteToCheck;
+		return i;
 	}
 	
-	public int getNbProfileToCheck() {
+	public int getNbInvestToCheck() {
 		init();
 		int i = 0;
 		for (Investisseur investisseur : invests) {
 			if(investisseur.getIsApproved().equals(Approval.WAITING))
 				i++;
 		}
-		nbProfileToCheck=i;
-		return nbProfileToCheck;
+		return i;
+	}
+	
+	public int getNbMembreToCheck() {
+		init();
+		int i = 0;
+		for (Membre memb : membres) {
+			if(memb.getIsApproved().equals(Approval.WAITING))
+				i++;
+		}
+		return i;
 	}
 	
 	public List<Investisseur> getInvests() {
@@ -74,9 +91,15 @@ public class PanneauAdminMB {
 	public List<Societe> getSocietes() {
 		return societes;
 	}
-	 public String refreshPan(){
-		   invests.clear();;
-		   societes.clear(); 
+	
+	public List<Membre> getMembres() {
+		return membres;
+	}
+	
+	public String refreshPan(){
+		   invests.clear();
+		   societes.clear();
+		   membres.clear();
 		   init();
 		   return "refresh";
 	   }

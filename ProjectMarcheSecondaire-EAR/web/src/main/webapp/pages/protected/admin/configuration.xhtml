@@ -82,12 +82,16 @@ body {
 				sur le Panneaux de configaration.</p>
 			<hr />
 			<p style="font-style: italic; font-weight: bold;">
-				Nombre de Société à accréditer : <span
-					style="color: red; font-weight: bold;">#{panneauAdminMB.nbSocieteToCheck}</span>
+				Nombre de Sociétés à accréditer : <span
+					style="color: red; font-weight: bold;">#{panneauAdminMB.getNbSocieteToCheck()}</span>
 			</p>
 			<p style="font-style: italic; font-weight: bold;">
-				Nombre de profile à valider : 
-				<span style="color: red; font-weight: bold;">#{panneauAdminMB.nbProfileToCheck}</span>
+				Nombre de profiles Investisseur à valider : 
+				<span style="color: red; font-weight: bold;">#{panneauAdminMB.getNbInvestToCheck()}</span>
+			</p>
+			<p style="font-style: italic; font-weight: bold;">
+				Nombre de profile Membres de société à valider : 
+				<span style="color: red; font-weight: bold;">#{panneauAdminMB.getNbMembreToCheck()}</span>
 			</p>
 		</div>
 

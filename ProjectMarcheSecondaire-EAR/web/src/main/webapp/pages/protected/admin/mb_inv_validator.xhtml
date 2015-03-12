@@ -79,59 +79,116 @@ body {
 		<div class="hero-unit">
 			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
 			<p style="color: blue; font-style: italic; font-weight: bold;">Valider
-				le profil des utilisateurs et des Membres de Sociétés.</p>
+				le profil des Investisseurs et des Membres de Sociétés.</p>
 			<hr />
-			<h:outputLink styleClass="btn btn-small btn-success" 
-								action="#{panneauAdminMB.refreshPan()}" >Refresh</h:outputLink>
+			<h:outputLink styleClass="btn btn-small btn-success"
+				action="#{panneauAdminMB.refreshPan()}">Refresh</h:outputLink>
 		</div>
 		<center>
-			<h:form>
-				<table class="table">
-					<tr style="font-weight: bold;">
-						<td>Nom</td>
-						<td>Prénom</td>
-						<td>Email</td>
-						<td>Status</td>
-						<td>Approuver</td>
-						<td>Valider</td>
-					</tr>
-					
-					<c:forEach var="item" items="#{panneauAdminMB.invests}">
-					
-					<c:if test="#{item.isApproved == 'WAITING'}">
-						<tr>
-							<td><h:outputText value="${item.nom}" /></td>
-							<td><h:outputText value="${item.prenom}" /></td>
-							<td><h:outputText value="${item.email}" /></td>
-							<td><h:outputText value="${item.user.type}" /></td>
-<!-- 							<td><h:outputText value="${item.isApproved}" /></td> -->
-							<td><h:selectOneMenu value="#{item.isApproved}">
-									<f:selectItem itemValue="WAITING"
-										itemLabel="WAITING" />
-									<f:selectItem itemValue="APPROVED"
-										itemLabel="APPROVED" />
-								</h:selectOneMenu></td>
-								
-						</tr>
-						
-					</c:if>
-					</c:forEach>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-						
-						<h:commandButton styleClass="btn btn-large btn-primary" value="Valider"
-								action="#{panneauAdminMB.validatorI()}" />
-						
-						</td>
-					</tr>
-						
-				</table>
-				</h:form>
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab1" data-toggle="tab">Investisseurs
+					</a></li>
+					<li><a href="#tab2" data-toggle="tab">Membres société</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<!-- 						tab des invest -->
+
+						<h:form>
+							<table class="table">
+								<tr style="font-weight: bold;">
+									<td>Nom</td>
+									<td>Prénom</td>
+									<td>Email</td>
+									<td>Status</td>
+									<td>Approuver</td>
+									<td>Valider</td>
+								</tr>
+
+								<c:forEach var="item" items="#{panneauAdminMB.invests}">
+
+									<c:if test="#{item.isApproved == 'WAITING'}">
+										<tr>
+											<td><h:outputText value="${item.nom}" /></td>
+											<td><h:outputText value="${item.prenom}" /></td>
+											<td><h:outputText value="${item.email}" /></td>
+											<td><h:outputText value="${item.user.type}" /></td>
+											<td><h:selectOneMenu value="#{item.isApproved}">
+													<f:selectItem itemValue="WAITING" itemLabel="WAITING" />
+													<f:selectItem itemValue="APPROVED" itemLabel="APPROVED" />
+												</h:selectOneMenu></td>
+
+										</tr>
+
+									</c:if>
+								</c:forEach>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><h:commandButton
+											styleClass="btn btn-large btn-primary" value="Valider"
+											action="#{panneauAdminMB.validatorI()}" /></td>
+								</tr>
+
+							</table>
+						</h:form>
+
+					</div>
+
+					<!-- 					Panneaux tab Membre soiété -->
+					<div class="tab-pane" id="tab2">
+
+						<h:form>
+							<table class="table">
+								<tr style="font-weight: bold;">
+									<td>Nom</td>
+									<td>Prénom</td>
+									<td>Email</td>
+									<td>Status</td>
+									<td>Approuver</td>
+									<td>Valider</td>
+								</tr>
+
+								<c:forEach var="item1" items="#{panneauAdminMB.membres}">
+
+									<c:if test="#{item1.isApproved == 'WAITING'}">
+										<tr>
+											<td><h:outputText value="${item1.nom}" /></td>
+											<td><h:outputText value="${item1.prenom}" /></td>
+											<td><h:outputText value="${item1.email}" /></td>
+											<td><h:outputText value="${item1.user.type}" /></td>
+											<td><h:selectOneMenu value="#{item1.isApproved}">
+													<f:selectItem itemValue="WAITING" itemLabel="WAITING" />
+													<f:selectItem itemValue="APPROVED" itemLabel="APPROVED" />
+												</h:selectOneMenu></td>
+
+										</tr>
+
+									</c:if>
+								</c:forEach>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><h:commandButton
+											styleClass="btn btn-large btn-primary" value="Valider"
+											action="#{panneauAdminMB.validatorM()}" /></td>
+								</tr>
+
+							</table>
+						</h:form>
+
+
+					</div>
+				</div>
+			</div>
 		</center>
 		<hr />
 	</div>

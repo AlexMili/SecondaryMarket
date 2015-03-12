@@ -1,6 +1,5 @@
 package project.miageif.beans;
 
-import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -14,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import project.miageif.beans.Utilisateur.Approval;
+
 @Entity
 @Table(name = "INVESTISSEUR")
 @NamedQuery(name="Investisseur.findInvestByID", query="select u from Investisseur u where u.user.id=:id")
@@ -21,9 +22,6 @@ public class Investisseur {
 	
 	public static final String FIND_BY_ID = "Investisseur.findInvestByID";
 	
-	@Table(name= "APPROVAL")
-	
-	public static enum Approval {WAITING, APPROVED};
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,9 +39,6 @@ public class Investisseur {
 	@NotNull
 	@Enumerated(EnumType.ORDINAL)
 	private Approval isApproved=Approval.WAITING;
-	
-	public void setApproval(Approval status) { this.isApproved = status; }
-	public boolean isApproved() { return this.isApproved == Approval.WAITING ? false : true; }
 	
 	private String nom;
 	private String prenom;

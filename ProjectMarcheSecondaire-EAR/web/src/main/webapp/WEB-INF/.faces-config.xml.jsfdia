@@ -113,6 +113,9 @@
     NAME="output1" PATH="/pages/protected/admin/mb_inv_validator.xhtml"
     TARGET="rules:#pages#protected#admin#mb_inv_validator.xhtml"
     TITLE="refresh" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
+    NAME="output2" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

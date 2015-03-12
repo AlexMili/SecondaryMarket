@@ -20,10 +20,9 @@ import javax.validation.constraints.Size;
 		+ "and u.password=:pass")
 public class Utilisateur {
 	
-	@Table(name= "TYPE")
 	public static enum Type { ADMIN, INVEST, MEMBER}; 
-	@Table(name= "STATUS")
 	public static enum Status {DISCONNECTED, CONNECTED}; 
+	public static enum Approval {WAITING, APPROVED};
 	
 	public static final String FIND_BY_LOGIN_PASS = "Utilisateur.findUserByLoginPass";
 	
