@@ -16,20 +16,15 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import project.miageif.beans.Utilisateur.Approval;
+
+
 @Entity
 @Table(name = "MEMBRE")
 @NamedQuery(name="Membre.findMembreByID", query="select u from Membre u where u.user.id=:id")
 public class Membre {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public static final String FIND_BY_ID = "Investisseur.findMembreByID";
-	
-	@Table(name= "APPROVAL")
-	public static enum Approval {WAITING, APPROVED};
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,11 +43,6 @@ public class Membre {
 	@Enumerated(EnumType.ORDINAL)
 	private Approval isApproved=Approval.WAITING;
 	
-	public Approval getApproval() { return this.isApproved; }
-	public void setApproval(Approval status) { this.isApproved = status; }
-	public boolean isApproved() { return this.isApproved == Approval.WAITING ? false : true; }
-	
-
 	@ManyToOne
 	@JoinColumn(name="id_societe")
 	Societe societe;
@@ -118,6 +108,13 @@ public class Membre {
 		this.email = email;
 	}
 	
+	public Approval getIsApproved() {
+		return isApproved;
+	}
+	
+	public void setIsApproved(Approval isApproved) {
+		this.isApproved = isApproved;
+	}
 	
 	}
 

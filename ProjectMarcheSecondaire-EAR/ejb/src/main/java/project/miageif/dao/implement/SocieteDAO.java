@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import project.miageif.beans.Investisseur;
 import project.miageif.beans.Membre;
 import project.miageif.beans.Societe;
+import project.miageif.beans.Utilisateur.Approval;
 import project.miageif.dao.GenericDAO;
 
 @Stateless
@@ -26,18 +27,30 @@ public class SocieteDAO extends GenericDAO<Societe> {
 		 return super.findOneResult(Societe.FIND_BY_ID, parameters);
 	}
 	
-	public Query getAllSocieteApprouvees(){
-		 Query result = null;
-
-		 try {
-			 result = getManager().createQuery("SELECT * FROM Societe u WHERE u.isApproved=1");
-		 }
-		 catch (Exception e) {
-				System.out.println("Error while running query: " + e.getMessage());
-				e.printStackTrace();
+	public Societe findSocieteByName(String name){
+		 Map<String, Object> parameters = new HashMap<String, Object>();
+		 parameters.put("name", name); 
+		 return super.executeQuery("SELECT s FROM Societe s WHERE s.nom=:name", parameters);
+	}
+	
+	public List<?> getAllSocieteApprouvees(){
+		 List<?> resultTmp = super.findAll();
+		 List<Societe> result = new ArrayList<Societe>();
+		 
+		 if(resultTmp.size() > 0)
+		 {
+			 for(int i=0;i<resultTmp.size();i++)
+			 {
+				 Societe so = (Societe) resultTmp.get(i);
+				 if(so.getIsApproved().equals(Approval.APPROVED))
+					 result.add(so);
+			 }
 		 }
 
 		 return result;
+	}
+	public List<Societe> findAll(){
+		return super.findAll();
 	}
 	
 	public Societe societeUpdate(Societe u){

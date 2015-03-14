@@ -3,7 +3,7 @@
 	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
 	<!-- Lister pour vider le cache du navigateur Règle de navigation -->
-<!-- 	page d'accueil -->
+	<!-- page d'accueil -->
 	<navigation-rule>
 		<from-view-id>/pages/public/accueil.xhtml</from-view-id>
 		<navigation-case>
@@ -13,7 +13,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>inscriptionSociete</from-outcome>
-			<to-view-id>/pages/public/newSociety.xhtml</to-view-id>
+			<to-view-id>/pages/public/inscriptionSociete.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -22,7 +22,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-<!-- 	page de login -->
+	<!-- page de login -->
 	<navigation-rule>
 		<from-view-id>/pages/public/login.xhtml</from-view-id>
 		<navigation-case>
@@ -46,7 +46,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-<!-- 	panneau d'administration -->
+	<!-- panneau d'administration -->
 	<navigation-rule>
 		<from-view-id>/pages/protected/admin/configuration.xhtml</from-view-id>
 		<navigation-case>
@@ -54,8 +54,59 @@
 			<to-view-id>/pages/public/login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>validator</from-outcome>
+			<to-view-id>/pages/protected/admin/mb_inv_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>soc_validator</from-outcome>
+			<to-view-id>/pages/protected/admin/soc_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
-<!-- 	panneau investisseur -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/admin/mb_inv_validator.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>refresh</from-outcome>
+			<to-view-id>/pages/protected/admin/mb_inv_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/protected/admin/soc_validator.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>refresh</from-outcome>
+			<to-view-id>/pages/protected/admin/mb_inv_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- panneau investisseur -->
 	<navigation-rule>
 		<from-view-id>/pages/protected/investisseur/investisseur.xhtml</from-view-id>
 		<navigation-case>
@@ -64,7 +115,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-<!-- 	panneau error -->
+	<!-- panneau error -->
 	<navigation-rule>
 		<from-view-id>/pages/public/loginError.xhtml</from-view-id>
 		<navigation-case>
@@ -73,7 +124,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-<!-- 	panneau d'inscription investisseur -->
+	<!-- panneau d'inscription investisseur -->
 	<navigation-rule>
 		<from-view-id>/pages/public/inscriptionInvestisseur.xhtml</from-view-id>
 		<navigation-case>

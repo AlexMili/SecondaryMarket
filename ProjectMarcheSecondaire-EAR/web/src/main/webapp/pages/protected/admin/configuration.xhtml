@@ -11,8 +11,8 @@
 	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
 	<h:outputStylesheet library='css' name='bootstrap.css' />
 	<!-- 	jquery -->
-	<h:outputScript library='js' name="jquery/jquery.js"/>
-	<h:outputScript library='js' name="bootstrap.js"/>
+	<h:outputScript library='js' name="jquery/jquery.js" />
+	<h:outputScript library='js' name="bootstrap.js" />
 	<!-- Le styles -->
 	<style type="text/css">
 body {
@@ -47,19 +47,22 @@ body {
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-<!-- 					<a class="brand" href="#recherche">Recherche</a> -->
+					<!-- 					<a class="brand" href="#recherche">Recherche</a> -->
 
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">
-							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous déconnecter
+							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous
+							déconnecter
 							<h:commandLink styleClass="btn btn-danger"
 								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
 						</p>
 						<ul class="nav">
-							<li><a href="#home">Home</a></li>
+							<li><h:commandLink
+									action="#{navigationController.pageAcceuil()}" value="Home"></h:commandLink>
+							</li>
 							<li><a href="#about">About</a></li>
 							<li><a href="#contact">Contact</a></li>
-							<li><a  style="font-weight: bold;" href="#recherche">Rechercher</a></li>
+							<li><a style="font-weight: bold;" href="#recherche">Rechercher</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -74,37 +77,57 @@ body {
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
 			<h1>Hello, #{userMB.admin.prenom} #{userMB.admin.nom} !</h1>
-			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue sur le Panneaux de configaration.</p>
-			<hr/>
-			<p style="font-style: italic; font-weight: bold;">Nombre de Société à accréditer : </p>
-			<p style="font-style: italic; font-weight: bold;">Nombre de profile à valider : </p>
+			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue
+				sur le Panneaux de configaration.</p>
+			<hr />
+			<p style="font-style: italic; font-weight: bold;">
+				Nombre de Sociétés à accréditer : <span
+					style="color: red; font-weight: bold;">#{panneauAdminMB.getNbSocieteToCheck()}</span>
+			</p>
+			<p style="font-style: italic; font-weight: bold;">
+				Nombre de profiles Investisseur à valider : <span
+					style="color: red; font-weight: bold;">#{panneauAdminMB.getNbInvestToCheck()}</span>
+			</p>
+			<p style="font-style: italic; font-weight: bold;">
+				Nombre de profile Membres de société à valider : <span
+					style="color: red; font-weight: bold;">#{panneauAdminMB.getNbMembreToCheck()}</span>
+			</p>
 		</div>
 
 		<!-- Example row of columns -->
-		<div class="row">
-			<div class="span4">
-				<h2>Sociétés</h2>
-				<p>Consulter la liste des sociétés et leur informations. Acrédité les sociétés disponible sur la platform.</p>
-				<p>
-					<a class="btn btn-primary" href="#">GO</a>
-				</p>
+		<h:form>
+			<div class="row">
+				<div class="span4">
+					<h2>Sociétés</h2>
+					<p>Consulter la liste des sociétés et leur informations.
+						Acrédité les sociétés disponible sur la platform.</p>
+					<p>
+						<!-- 					<a class="btn btn-primary" href="#">GO</a> -->
+						<h:commandLink styleClass="btn btn-primary"
+							action="#{navigationController.soc_validator()}" value="GO"></h:commandLink>
+					</p>
+				</div>
+
+				<div class="span4">
+					<h2>Investisseurs/Membres</h2>
+					<p>Consulter le profile des utilisateurs que ce soit un
+						Investisseur ou un Membre de société.</p>
+					<p>
+						<!-- 					<a class="btn btn-primary" href="#">GO</a> -->
+						<h:commandLink styleClass="btn btn-primary"
+							action="#{navigationController.mm_inv_validator()}" value="GO"></h:commandLink>
+					</p>
+				</div>
+				<div class="span4">
+					<h2>Offre achat/vente</h2>
+					<p>Consulter les différentes offres de Achat/Vente de produits
+						en cours.</p>
+					<p>
+						<a class="btn btn-primary" href="#">GO</a>
+					</p>
+				</div>
 			</div>
-			<div class="span4">
-				<h2>Investisseurs/Membres</h2>
-				<p>Consulter le profile des utilisateurs que ce soit un Investisseur ou un Membre de société.</p>
-				<p>
-					<a class="btn btn-primary" href="#">GO</a>
-				</p>
-			</div>
-			<div class="span4">
-				<h2>Offre achat/vente</h2>
-				<p>Consulter les différentes offres de Achat/Vente de produits en cours.
-				</p>
-				<p>
-					<a class="btn btn-primary" href="#">GO</a>
-				</p>
-			</div>
-		</div>
+		</h:form>
 	</div>
 	<!-- /container -->
 </body>
