@@ -40,16 +40,6 @@
 	<classpathentry kind="lib" path="/ProjectMarcheSecondaire-EAR-ejb/lib/validator/hibernate-validator-cdi-5.1.3.Final.jar"/>
 	<classpathentry kind="lib" path="/ProjectMarcheSecondaire-EAR-ejb/lib/validator/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="lib" path="/ProjectMarcheSecondaire-EAR-ejb/lib/mysql-connector-java-5.1.34-bin.jar"/>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/ProjectMarcheSecondaire-EAR-ejb"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

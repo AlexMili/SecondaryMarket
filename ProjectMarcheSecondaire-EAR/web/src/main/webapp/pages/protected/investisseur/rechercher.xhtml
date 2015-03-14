@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
+<h:head>
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+/* Custom container */
+.container-narrow {
+	margin: 0 auto;
+	max-width: 700px;
+}
+
+.container-narrow>hr {
+	margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	margin: 60px 0;
+	text-align: center;
+}
+
+.jumbotron h1 {
+	font-size: 72px;
+	line-height: 1;
+}
+
+.jumbotron .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+	margin: 60px 0;
+}
+
+.marketing p+h4 {
+	margin-top: 28px;
+}
+</style>
+</h:head>
+<h:body>
+		<h:outputScript target="body">
+        addEventListener("load", function(){
+	    var inputs, index;
+
+       inputs = document.getElementsByTagName('input');
+       inputs[1].value = "Nom de société";
+       inputs[2].value = "Numéro de contrat";
+       });
+	    </h:outputScript>
+	<h:form>
+		<div class="container-narrow">
+
+			<div class="masthead">
+				<ul class="nav nav-pills pull-right">
+					<li class="active"><h:commandLink action="#{navigationController.pageRechercher}"
+							value="Home">
+						</h:commandLink></li>
+					<li><h:commandLink action="#{navigationController.pageInvestisseur}"
+							value="Go Back">
+						</h:commandLink></li>
+				</ul>
+				<h3 class="muted">Saisir votre chois</h3>
+			</div>
+
+			<hr></hr>
+				
+			<div class="jumbotron">
+				<p class="lead">saisir une nom de société ci-dessous</p>
+				<tr>
+							<td height="31">
+								<div align="center">Nom</div>
+							</td>
+							<td height="38">
+								<div align="center">
+									<input
+										type="text"
+										name="SocietyName"
+										size="32"
+										maxlength="50"
+									></input>
+								</div>
+							</td>
+				</tr>
+				<h:commandLink styleClass="btn btn-large btn-success"
+					action="#{navigationController.pageNewSociety}"
+					value="Valider">
+				</h:commandLink>
+			</div>
+
+			<hr />
+			
+			<div class="jumbotron">
+				<p class="lead">si vous connaissez le numéro de contrat</p>
+				<tr>
+							<td height="31">
+								<div align="center">Number</div>
+							</td>
+							<td height="38">
+								<div align="center">
+									<input
+										type="text"
+										name="SocietyName"
+										size="32q"
+										maxlength="50"
+									></input>
+								</div>
+							</td>
+				
+				<h:commandLink styleClass="btn btn-large btn-success"
+					action="#{navigationController.pageNewSociety}"
+					value="Valider">
+				</h:commandLink>
+				</tr>
+			</div>
+			
+			<hr />
+
+		</div>
+	</h:form>
+</h:body>
+</html>
+
