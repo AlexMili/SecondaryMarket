@@ -44,7 +44,6 @@ public class Administrateur {
 	
 	private String nom;
 	private String prenom;
-	private String email;
 
 	public Administrateur() {}
 
@@ -92,13 +91,6 @@ public class Administrateur {
 		this.prenom = prenom;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 	}
 

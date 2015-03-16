@@ -7,31 +7,33 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.JoinColumn;
 
+import project.miageif.beans.Contrat;
 import project.miageif.beans.Investisseur;
 import project.miageif.beans.Membre;
+import project.miageif.beans.Offre;
 import project.miageif.dao.GenericDAO;
 
 @Stateless
-public class MembreDAO extends GenericDAO<Membre> {
+public class OffreDAO extends GenericDAO<Offre> {
 
-	public MembreDAO() {
-		super(Membre.class);
+	public OffreDAO() {
+		super(Offre.class);
 	}
 	
-	public Membre findMembreByID(int id){
+	public Offre findContratByID(int id){
 		 Map<String, Object> parameters = new HashMap<String, Object>();
 		 parameters.put("id", id); 
-		 return super.findOneResult(Membre.FIND_BY_ID, parameters);
+		 return super.findOneResult(Offre.FIND_BY_ID, parameters);
 	}
 	
-	public Membre membreUpdate(Membre u){
+	public Offre updateContrat(Offre u){
 		 return super.update(u);
 	}
 	
-	public void createMembre(Membre u){
+	public void createContrat(Offre u){
 		super.save(u);
 	}
-	public List<Membre> findAll(){
+	public List<Offre> findAll(){
 		return super.findAll();
 	}
 }

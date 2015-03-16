@@ -19,5 +19,9 @@ property name="hbm2ddl.auto">create</property -->
   <mapping class="project.miageif.beans.Administrateur"/>
   <mapping class="project.miageif.beans.Utilisateur"/>
   <mapping class="project.miageif.beans.Investisseur"/>
+  <mapping class="project.miageif.beans.Contrat"/>
+  <mapping class="project.miageif.beans.Societe"/>
+  <mapping class="project.miageif.beans.Membre"/>
+  <mapping class="project.miageif.beans.Offre"/>
  </session-factory>
 </hibernate-configuration>

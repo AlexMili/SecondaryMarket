@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+}
+
+.form-signin {
+	max-width: 300px;
+	padding: 19px 29px 29px;
+	margin: 0 auto 20px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin input[type="text"], .form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+</style>
+</h:head>
+<h:body>
+	<center>
+		<div class="container ">
+			<h:form>
+				<h1 class="text-info text-center">Ajouter une entreprise</h1>
+				<hr></hr>
+				<table>
+					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<td><p>Nom :</p></td>
+						<td><h:inputText id="nom" value="#{userMB.societe.nom}"
+								styleClass="input-block-level" class="text input"
+								required="true"
+								size="20" maxlength="60">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><p>Adresse :</p></td>
+						<td><h:inputText id="adresse" value="#{userMB.societe.adresse}"
+								styleClass="input-block-level" class="text input"
+								required="true"
+								size="20" maxlength="60">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><p>Code Postale :</p></td>
+						<td><h:inputText id="codeposte"
+								value="#{userMB.societe.codePostal}"
+								styleClass="input-block-level" class="text input"
+								required="true"
+								size="6" maxlength="6">
+								<f:convertNumber integerOnly="true" type="number" />
+							</h:inputText> <h:message id="Login" for="login" errorClass="erreur" /></td>
+					</tr>
+					<tr>
+						<td><p>Email :</p></td>
+						<td><h:inputText id="email" value="#{userMB.societe.email}"
+								styleClass="input-block-level" class="text input"
+								required="true"
+								size="20" maxlength="60">
+								<!-- 							<f:validateRegex pattern="*@*.*"></f:validateRegex> -->
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<div class="submit">
+								<h:messages globalOnly="true" infoClass="info" />
+								<h:commandButton styleClass="btn btn-large btn-primary"
+									value="Inscription" action="#{userMB.create_soc()}" />
+							</div>
+						</td>
+					</tr>
+
+				</table>
+				<br />
+				<p>
+					<h:outputLink styleClass="info"
+						value="#{navigationController.pageAcceuil()}">Retour à l'accueil</h:outputLink>
+				</p>
+			</h:form>
+		</div>
+	</center>
+	<!-- /container -->
+</h:body>
+</html>

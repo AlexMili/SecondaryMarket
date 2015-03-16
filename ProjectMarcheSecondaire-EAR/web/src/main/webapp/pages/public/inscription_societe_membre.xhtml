@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+}
+
+.form-signin {
+	max-width: 300px;
+	padding: 19px 29px 29px;
+	margin: 0 auto 20px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin input[type="text"], .form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+</style>
+</h:head>
+<h:body>
+	<center>
+		<div class="container ">
+			<h:form>
+				<h1 class="text-info text-center">Inscription Membre de Société</h1>
+				<hr></hr>
+				<h1>Choix Société</h1>
+				<h:selectOneMenu value="#{userMB.societe.nom}">
+<!-- 				<c:forEach var="item" items="#{userMB.listSociete}"> -->
+<!-- 				<c:if test="#{item.isApproved == 'WAITING'}"> -->
+					<f:selectItems value="#{userMB.listSociete}" var="c"
+						itemLabel="#{c.nom}" itemValue="#{c.nom}" />
+<!-- 					<f:selectItem itemValue="#{item.nom}" itemLabel="#{item.nom}" /> -->
+<!-- 				</c:if> -->
+<!-- 				</c:forEach> -->
+				</h:selectOneMenu>
+
+<!-- 				<p> -->
+<!-- 					<h:outputLink styleClass="btn btn-small btn-success" value="#{userMB.refresh()}">refresh</h:outputLink> -->
+				<table>
+					<tr>
+						<td></td>
+					</tr>
+					<hr></hr>
+					<tr>
+						<td><p>Nom :</p></td>
+						<td><h:inputText id="nom" value="#{userMB.membre.nom}"
+								styleClass="input-block-level" class="text input"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'Nom utilisateur';}"
+								onload="this.value = 'Nom utilisateur';" required="true"
+								size="20" maxlength="60">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><p>Prénom :</p></td>
+						<td><h:inputText id="prenom" value="#{userMB.membre.prenom}"
+								styleClass="input-block-level" class="text input"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'Prenom utilisateur';}"
+								onload="this.value = 'Prenom utilisateur';" required="true"
+								size="20" maxlength="60">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><p>Login :</p></td>
+						<td><h:inputText id="login"
+								value="#{userMB.user.login}"
+								styleClass="input-block-level" class="text input"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'Login utilisateur';}"
+								onload="this.value = 'Login utilisateur';" required="true"
+								size="20" maxlength="60">
+							</h:inputText> <h:message id="Login" for="login" errorClass="erreur" /></td>
+					</tr>
+					<tr>
+						<td><p>Password :</p></td>
+						<td><h:inputSecret id="password"
+								value="#{userMB.user.password}" class="input"
+								required="true" size="20" maxlength="20"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'Password';}"
+								onload="this.value = 'Password';">
+								<f:validateRequired minimum="3" maximum="15" />
+							</h:inputSecret> <h:message id="Password" for="password" errorClass="erreur" /></td>
+					</tr>
+					<tr>
+						<td><p>Email :</p></td>
+						<td><h:inputText id="email" value="#{userMB.user.email}"
+								styleClass="input-block-level" class="text input"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'Email utilisateur';}"
+								onload="this.value = 'Email utilisateur';" required="true"
+								size="20" maxlength="60">
+								<!-- 							<f:validateRegex pattern="*@*.*"></f:validateRegex> -->
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							
+						</td>
+					</tr>
+
+				</table>
+				<center>
+				<div class="submit">
+								<h:messages globalOnly="true" infoClass="info" />
+								<h:commandButton styleClass="btn btn-large btn-primary"
+									value="Inscription" action="#{userMB.incriptionMembre()}" />
+							</div>
+							<hr></hr>
+				<p>
+					<h:outputLink styleClass="info"
+						value="#{navigationController.pageAcceuil()}">Retour à l'accueil</h:outputLink>
+				</p>
+				</center>
+			</h:form>
+			<p>
+					<h:outputLink styleClass="btn btn-small btn-warning" value="#{navigationController.create_soc()}">Creer Entreprise</h:outputLink>
+				</p>
+		</div>
+	</center>
+	<!-- /container -->
+</h:body>
+</html>

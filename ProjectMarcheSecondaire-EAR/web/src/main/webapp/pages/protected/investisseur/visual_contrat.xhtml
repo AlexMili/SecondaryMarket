@@ -1,0 +1,171 @@
+<!-- Inspiré de http://getbootstrap.com/2.3.2/getting-started.html#examples -->
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
+<h:head>
+	<!-- css -->
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<!-- 	jquery -->
+	<h:outputScript library='js' name="jquery/jquery.js" />
+	<h:outputScript library='js' name="bootstrap.js" />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
+</h:head>
+
+<h:body onload="#{userMB.setInvestEager()}">
+	<h:form>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<button type="button" class="btn btn-navbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<!-- 					<a class="brand" href="#recherche">Recherche</a> -->
+
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">
+							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous
+							déconnecter
+							<h:commandLink styleClass="btn btn-danger"
+								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
+						</p>
+						<ul class="nav">
+							<li><h:commandLink action="investisseur.xhtml" value="Home"></h:commandLink></li>
+							<!-- 							<li><a href="#about">About</a></li> -->
+							<!-- 							<li><a href="#contact">Contact</a></li> -->
+							<!-- 							<li><a style="font-weight: bold;" href="#recherche">Rechercher</a></li> -->
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+
+				</div>
+			</div>
+		</div>
+	</h:form>
+
+	<div class="container">
+
+		<!-- Main hero unit for a primary marketing message or call to action -->
+		<!-- 		<div class="hero-unit"> -->
+		<!-- 			<h1>Hello, #{userMB.investisseur.prenom} -->
+		<!-- 				#{userMB.investisseur.nom} !</h1> -->
+		<!-- 			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue -->
+		<!-- 				et soyez prêt à investir.</p> -->
+		<!-- 			<hr /> -->
+		<!-- 		</div> -->
+
+
+	</div>
+	<!-- /container -->
+	<center>
+		<h:form>
+			<h2 class="text-info text-center">Mes contrats</h2>
+			<hr></hr>
+			<h4 class="text-success text-center">Choix du contrat</h4>
+			<br />
+			<h:selectOneMenu id="mySociete" value="#{userMB.contrat.id}">
+				<f:selectItem itemValue="-1" itemLabel="selectionner un contrat" />
+				<!-- 					<f:selectItems value="#{userMB.listSociete}" var="c" -->
+				<!-- 						itemLabel="#{c.nom}" itemValue="#{c.nom}" /> -->
+				<c:forEach var="item" items="#{userMB.investisseur.contrats}">
+					<f:selectItem itemValue="#{item.id}"
+						itemLabel="Contrat titre identifiant n° #{item.id} sur entreprise #{item.societe.nom} | ( NB offres = #{item.offres.size()} ) " />
+				</c:forEach>
+				<!-- 				<f:ajax listener="#{userMB.setInvestEager()}"/> -->
+				<f:ajax listener="#{userMB.init2()}" />
+				<f:ajax listener="#{userMB.setContratEager()}" />
+				<f:ajax render='myChoix' execute='mySociete' />
+			</h:selectOneMenu>
+			<br />
+			<br />
+			<h:panelGroup id='myChoix'>
+				<c:if
+					test="#{userMB.contrat.id == null or userMB.contrat.id == '-1' or userMB.contrat.id == ''}">
+					<h2 class="alert alert-error">Veuillez selectionner un contrat
+					</h2>
+				</c:if>
+				<c:if
+					test="#{userMB.contrat.id != null and userMB.contrat.id != '-1' and userMB.contrat.id != ''}">
+					<h:panelGroup
+						rendered="#{userMB.contrat.id != '-1' and userMB.contrat.id != '' and userMB.contrat.id != null}">
+						<!-- 						<h:outputLabel value="#{userMB.setContratEager()}" /> -->
+						<h:outputLabel value="Contrat titre n° #{userMB.contrat.id}" />
+						<br />
+						<h:outputLabel value="Société : #{userMB.contrat.societe.nom}" />
+						<h:outputLabel
+							value="Quantité d'actifs : #{userMB.contrat.quantite}" />
+						<h:outputLabel
+							value="Prix par actifs : : #{userMB.contrat.societe.prixTitre} € / Titre" />
+						<h:outputLabel
+							value="Valeur du contrat : #{userMB.contrat.societe.prixTitre*userMB.contrat.quantite} €" />
+						<h:outputLabel value="Date d'achat : #{userMB.contrat.date}" />
+						<hr />
+						<h:panelGroup rendered="#{userMB.contrat.offres.size()!=0}">
+							<h3>Liste d'offres de vente sur le contrat</h3>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Offre n°</th>
+										<th>Prix</th>
+										<th>Quantite</th>
+										<th>Enchère</th>
+										<th>Date d'émission</th>
+										<th>Date de disponibilité</th>
+										<th>Etat</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="item" items="#{userMB.contrat.offres}">
+										<tr>
+											<td><h:outputLabel value="#{item.id}" /></td>
+											<td><h:outputLabel value="#{item.prix}" /></td>
+											<td><h:outputLabel value="#{item.quantiteTitre}" /></td>
+											<td><h:outputLabel
+													value="#{(item.type=='ENCHERE_OUI')? 'OUI':'NON'}" /></td>
+											<td><h:outputLabel value="#{item.date}" /></td>
+											<td><h:outputLabel value="#{item.datedispo}" /></td>
+											<td><h:outputLabel 
+													value="#{(item.etat=='VENDUE')? 'VENDUE' : (userMB.contrat.quantite>item.quantiteTitre)?'EN COURS DE VENTE':'NON VALIDE' }" /></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</h:panelGroup>
+					</h:panelGroup>
+				</c:if>
+			</h:panelGroup>
+		</h:form>
+	</center>
+
+</h:body>
+<h:outputScript target="head">
+</h:outputScript>
+</html>

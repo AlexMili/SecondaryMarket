@@ -23,6 +23,8 @@ public class Utilisateur {
 	public static enum Type { ADMIN, INVEST, MEMBER}; 
 	public static enum Status {DISCONNECTED, CONNECTED}; 
 	public static enum Approval {WAITING, APPROVED};
+	public static enum Etat_Offre {EN_VENTE, VENDUE};
+	public static enum Type_Offre {ENCHERE_NON, ENCHERE_OUI};
 	
 	public static final String FIND_BY_LOGIN_PASS = "Utilisateur.findUserByLoginPass";
 	
@@ -36,6 +38,10 @@ public class Utilisateur {
 
 	@NotNull
 	private String password;
+	
+	@NotNull
+	@Column(unique = true)
+	private String email;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Type type;
@@ -106,6 +112,12 @@ public class Utilisateur {
 	  System.out.println("Utilisateur détruit");
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	}
 

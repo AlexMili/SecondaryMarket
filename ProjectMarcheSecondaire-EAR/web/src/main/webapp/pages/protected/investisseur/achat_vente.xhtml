@@ -1,0 +1,214 @@
+<!-- Inspiré de http://getbootstrap.com/2.3.2/getting-started.html#examples -->
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+	xmlns:f='http://java.sun.com/jsf/core'
+	xmlns:h='http://java.sun.com/jsf/html'
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui='http://java.sun.com/jsf/facelets'>
+<h:head>
+	<!-- css -->
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<h:outputStylesheet library='css' name='bootstrap-responsive.css' />
+	<h:outputStylesheet library='css' name='bootstrap.css' />
+	<!-- 	jquery -->
+	<h:outputScript library='js' name="jquery/jquery.js" />
+	<h:outputScript library='js' name="bootstrap.js" />
+	<!-- Le styles -->
+	<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
+</h:head>
+
+<h:body onload="#{userMB.setInvestEager()}">
+	<h:form>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<button type="button" class="btn btn-navbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<!-- 					<a class="brand" href="#recherche">Recherche</a> -->
+
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">
+							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous
+							déconnecter
+							<h:commandLink styleClass="btn btn-danger"
+								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
+						</p>
+						<ul class="nav">
+							<li><h:commandLink
+									action="#{navigationController.pageAcceuil()}" value="Home"></h:commandLink></li>
+							<!-- 							<li><a href="#about">About</a></li> -->
+							<!-- 							<li><a href="#contact">Contact</a></li> -->
+							<!-- 							<li><a style="font-weight: bold;" href="#recherche">Rechercher</a></li> -->
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+
+				</div>
+			</div>
+		</div>
+	</h:form>
+
+	<div class="container">
+
+		<!-- Main hero unit for a primary marketing message or call to action -->
+		<!-- 		<div class="hero-unit"> -->
+		<!-- 			<h1>Hello, #{userMB.investisseur.prenom} -->
+		<!-- 				#{userMB.investisseur.nom} !</h1> -->
+		<!-- 			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue -->
+		<!-- 				et soyez prêt à investir.</p> -->
+		<!-- 			<hr /> -->
+		<!-- 		</div> -->
+
+
+	</div>
+	<!-- /container -->
+	<center>
+		<h:form>
+			<h2 class="text-info text-center">Achats de titres ( vôtre solde
+				: #{userMB.investisseur.solde} € )</h2>
+			<hr></hr>
+			<h4 class="text-success text-center">Choix de la Société</h4>
+			<br />
+			<h:selectOneMenu id="mySociete" value="#{userMB.societe.nom}">
+				<f:selectItem itemValue="selectionner"
+					itemLabel="selectionner une société" />
+				<!-- 					<f:selectItems value="#{userMB.listSociete}" var="c" -->
+				<!-- 						itemLabel="#{c.nom}" itemValue="#{c.nom}" /> -->
+				<c:forEach var="item" items="#{userMB.listSociete}">
+					<c:if test="#{item.isApproved == 'APPROVED'}">
+						<f:selectItem itemValue="#{item.nom}" itemLabel="#{item.nom}" />
+					</c:if>
+				</c:forEach>
+				<!-- 				<f:ajax listener="#{userMB.init2()}"/> -->
+				<f:ajax render='myChoix' execute='mySociete' />
+			</h:selectOneMenu>
+			<br />
+			<br />
+			<h:panelGroup id='myChoix'>
+				<c:if
+					test="#{userMB.societe.nom == 'selectionner' or userMB.societe.nom == '' or userMB.societe.nom == null or userMB.societe.nom == ' '}">
+					<h2 class="alert alert-error">Veuillez selectionner une société
+					</h2>
+				</c:if>
+				<c:if
+					test="#{userMB.societe.nom != 'selectionner' and userMB.societe.nom != '' and userMB.societe.nom != null}">
+					<h:panelGroup
+						rendered="#{userMB.societe.nom != 'selectionner' and userMB.societe.nom != '' and userMB.societe.nom != null}">
+						<h:outputLabel value="#{userMB.setSocieterEager()}" />
+						<h:outputLabel value="#{userMB.societe.nom}" />
+						<h:outputLabel
+							value="Code postale : #{(userMB.societe.codePostal==0)? '' : userMB.societe.codePostal}" />
+						<h:outputLabel value="Adresse : #{userMB.societe.adresse}" />
+						<h:outputLabel value="Ville : #{userMB.societe.ville}" />
+						<h:outputLabel
+							value="#{userMB.societe.quantiteTitre} Titres (dont #{userMB.societe.quantiteTitre-userMB.societe.nbTitreVendue} disponibles.)" />
+						<h:outputLabel value="#{userMB.societe.prixTitre} €/Titre" />
+						<h:outputLabel
+							value="Capitalisation est #{userMB.societe.prixTitre * userMB.societe.nbTitreVendue} €" />
+						<!-- 				<br /> -->
+						<!-- 				<br /> -->
+						<hr />
+						<!-- 				<br /> -->
+						<h4 class="text-warning text-center">Formulaire d'achat</h4>
+						<br />
+						<!-- 				<h:inputText value="#{userMB.contrat.quantite}" -->
+						<!-- 					requiredMessage="Please enter un value." -->
+						<!-- 					validatorMessage="Invalid email format"> -->
+						<!-- 					<f:validateRegex pattern="[1-9]+" /> -->
+						<!-- 				</h:inputText> -->
+						<p>Choisissez la quantité de titres à acheter :</p>
+						<h:selectOneMenu id="myQuantite"
+							value="#{userMB.contrat.quantite}">
+							<f:selectItem itemValue="0" itemLabel="0" />
+							<f:selectItem itemValue="50" itemLabel="50" />
+							<f:selectItem itemValue="100" itemLabel="100" />
+							<f:selectItem itemValue="200" itemLabel="200" />
+							<f:selectItem itemValue="300" itemLabel="300" />
+							<f:ajax render='myChoixQuantite' execute='myQuantite' />
+						</h:selectOneMenu>
+
+						<!-- 				<br /> -->
+						<!-- 				<h:inputText value="#{userMB.contrat.quantite}" /> -->
+						<!-- 				<br /> -->
+						<!-- 				<h:inputText value="#{userMB.contrat.quantite}" /> -->
+						<!-- 				<br /> -->
+						<!-- 				<h:inputText value="#{userMB.contrat.quantite}" /> -->
+						<!-- 				<br /> -->
+
+						<br />
+						<h:panelGroup id='myChoixQuantite'>
+							<c:choose>
+								<c:when
+									test='#{userMB.contrat.quantite > (userMB.societe.quantiteTitre-userMB.societe.nbTitreVendue)}'>
+									<p style="color: red;">
+										<h:outputText
+											value="Choisissez une quantité inférieur à #{(userMB.societe.quantiteTitre-userMB.societe.nbTitreVendue)}" />
+									</p>
+								</c:when>
+								<c:when test='#{userMB.contrat.quantite == 0 }'>
+									<p style="color: red;">
+										<h:outputText
+											value="Choisissez une quantité supérieur à 0 et inférieur à #{(userMB.societe.quantiteTitre-userMB.societe.nbTitreVendue)}" />
+									</p>
+								</c:when>
+								<c:when
+									test='#{(userMB.contrat.quantite*userMB.societe.prixTitre)>userMB.investisseur.solde}'>
+									<p style="color: red;">
+										<h:outputText
+											value="Veuillez alimenter votre compte -- Votre solde = #{userMB.investisseur.solde} € -- montant souahter = #{userMB.contrat.quantite*userMB.societe.prixTitre}" />
+									</p>
+								</c:when>
+								<c:otherwise>
+									<p style="color: green; font-weight: bold;">
+										<h:outputText
+											value='Confirmer votre achat : #{userMB.contrat.quantite}  x  #{userMB.societe.prixTitre} =  #{ userMB.contrat.quantite*userMB.societe.prixTitre } €' />
+									</p>
+									<br />
+									<h:commandButton styleClass="btn btn-large btn-primary"
+										value="Valider" action="#{userMB.achatTitres()}" />
+								</c:otherwise>
+							</c:choose>
+						</h:panelGroup>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</h:panelGroup>
+				</c:if>
+			</h:panelGroup>
+
+		</h:form>
+	</center>
+
+</h:body>
+<h:outputScript target="head">
+</h:outputScript>
+</html>

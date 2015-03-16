@@ -55,15 +55,15 @@ body {
 							#{userMB.user.login.toUpperCase()} Cliquez ici pour vous
 							déconnecter
 							<h:commandLink styleClass="btn btn-danger"
-								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
+								action="#{userMB.userLogout()}" value="Logout"></h:commandLink>
 						</p>
 						<ul class="nav">
 							<li><h:commandLink
 									action="#{navigationController.pageAcceuil()}" value="Home"></h:commandLink>
 							</li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#contact">Contact</a></li>
-							<li><a style="font-weight: bold;" href="#recherche">Rechercher</a></li>
+<!-- 							<li><a href="#about">About</a></li> -->
+<!-- 							<li><a href="#contact">Contact</a></li> -->
+<!-- 							<li><a style="font-weight: bold;" href="#recherche">Rechercher</a></li> -->
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -103,8 +103,10 @@ body {
 									<td>Email</td>
 									<td>Code Postale</td>
 									<td>Telephone</td>
+									<td>Prix de l'action</td>
+									<td>Nombre d'actions en ventes</td>
+									<td>Nombre d'actions vendues</td>
 									<td>ville</td>
-									<td>Status</td>
 									<td>Valider</td>
 								</tr>
 								<c:set var="buttonVal3" value="false"/>
@@ -118,6 +120,9 @@ body {
 											<td><h:outputText value="${item.email}" /></td>
 											<td><h:outputText value="${item.codePostal}" /></td>
 											<td><h:outputText value="#{item.telephone}" /></td>
+											<td><h:outputText value="#{item.prixTitre}" /></td>
+											<td><h:outputText value="#{item.quantiteTitre}"/></td>
+											<td><h:outputText value="#{item.prixTitre}" /></td>
 											<td><h:outputText value="#{item.ville}" /></td>
 											<td><h:selectOneMenu value="#{item.isApproved}">
 													<f:selectItem itemValue="WAITING" itemLabel="WAITING" />
@@ -127,6 +132,8 @@ body {
 									</c:if>
 								</c:forEach>
 								<tr>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -172,6 +179,9 @@ body {
 											<td><h:outputText value="${item1.email}" /></td>
 											<td><h:outputText value="${item1.codePostal}" /></td>
 											<td><h:outputText value="#{item1.telephone}" /></td>
+											<td><h:outputText value="#{item1.prixTitre}" /></td>
+											<td><h:outputText value="#{item1.quantiteTitre}"/></td>
+											<td><h:outputText value="#{item1.prixTitre}" /></td>
 											<td><h:outputText value="#{item1.ville}" /></td>
 											<td><h:outputText value="#{item1.isApproved}" /></td>
 										</tr>
@@ -179,6 +189,8 @@ body {
 									</c:if>
 								</c:forEach>
 								<tr>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>

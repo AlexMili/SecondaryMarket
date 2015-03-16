@@ -24,10 +24,11 @@ inputs = document.getElementsByTagName('input');
 				<h:graphicImage library="images" value="/resources/images/user.png" />
 			</div>
 			<h:form>
-				<h:inputText id="login" value="#{userMB.user.login}"
+				<h:inputText id="login" value="#{userMB.instanceUser.login}"
 					class="text input" onfocus="this.value = '';"
 					onblur="if (this.value == '') {this.value = 'Nom utilisateur';}"
-					onload="this.value = 'Nom utilisateur';" required="true" size="20"
+					onload="this.value = 'Nom utilisateur';" 
+					required="true" size="20"
 					maxlength="60">
 					<f:validateRequired minimum="3" maximum="15" />
 				</h:inputText>

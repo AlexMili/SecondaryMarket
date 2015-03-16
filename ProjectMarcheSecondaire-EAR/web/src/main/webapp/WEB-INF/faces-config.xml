@@ -2,8 +2,7 @@
 <faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
-	<!-- Lister pour vider le cache du navigateur Règle de navigation -->
-	<!-- page d'accueil -->
+	<!-- Lister pour vider le cache du navigateur Règle de navigation page d'accueil -->
 	<navigation-rule>
 		<from-view-id>/pages/public/accueil.xhtml</from-view-id>
 		<navigation-case>
@@ -13,7 +12,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>inscriptionSociete</from-outcome>
-			<to-view-id>/pages/public/inscriptionSociete.xhtml</to-view-id>
+			<to-view-id>/pages/public/inscription_societe_membre.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -43,6 +42,11 @@
 		<navigation-case>
 			<from-outcome>investisseur</from-outcome>
 			<to-view-id>/pages/protected/investisseur/investisseur.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>membre</from-outcome>
+			<to-view-id>/pages/protected/membre/membre.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -106,12 +110,67 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+<!-- 	Membre -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/membre/membre.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/protected/admin/configuration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>refresh</from-outcome>
+			<to-view-id>/pages/protected/admin/mb_inv_validator.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<!-- panneau investisseur -->
 	<navigation-rule>
 		<from-view-id>/pages/protected/investisseur/investisseur.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/protected/investisseur/investisseur.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modif_invest</from-outcome>
+			<to-view-id>/pages/protected/investisseur/modif_invest.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/protected/investisseur/modif_invest.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>acceuilInvest</from-outcome>
+			<to-view-id>/pages/protected/investisseur/investisseur.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/protected/investisseur/achat_vente.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>acceuil</from-outcome>
+			<to-view-id>/pages/protected/investisseur/investisseur.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -135,6 +194,59 @@
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>achat_vente</from-outcome>
+			<to-view-id>/pages/protected/investisseur/achat_vente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- From inscription societe et membre -->
+	<navigation-rule>
+		<from-view-id>/pages/public/inscription_societe_membre.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>create_soc</from-outcome>
+			<to-view-id>/pages/public/creer_entreprise.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- From inscription societe et membre -->
+	<navigation-rule>
+		<from-view-id>/pages/public/creer_entreprise.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/pages/public/accueil.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>create_soc</from-outcome>
+			<to-view-id>/pages/public/creer_entreprise.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>soc_creer</from-outcome>
+			<to-view-id>/pages/public/inscription_societe_membre.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>achat_vente</from-outcome>
+			<to-view-id>/pages/protected/investisseur/achat_vente.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

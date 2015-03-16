@@ -4,7 +4,7 @@
 <html xmlns='http://www.w3.org/1999/xhtml'
 	xmlns:f='http://java.sun.com/jsf/core'
 	xmlns:h='http://java.sun.com/jsf/html'
-	 xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui='http://java.sun.com/jsf/facelets'>
 <h:head>
 	<!-- css -->
@@ -39,7 +39,7 @@ body {
 </style>
 </h:head>
 
-<h:body onload="#{userMB.setInvestEager()}">
+<h:body onload="#{userMB.setMembEager()}">
 	<h:form>
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
@@ -57,9 +57,7 @@ body {
 								action="#{userMB.userLogout}" value="Logout"></h:commandLink>
 						</p>
 						<ul class="nav">
-							<li><h:commandLink
-									action="#{navigationController.pageAcceuil()}" value="Home"></h:commandLink>
-									</li>
+							<li><a href="#home">Home</a></li>
 <!-- 							<li><a href="#about">About</a></li> -->
 <!-- 							<li><a href="#contact">Contact</a></li> -->
 <!-- 							<li><a  style="font-weight: bold;" href="#recherche">Rechercher</a></li> -->
@@ -70,95 +68,55 @@ body {
 				</div>
 			</div>
 		</div>
-	
+	</h:form>
 
 	<div class="container">
 
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
-			<h1>Hello, #{userMB.investisseur.prenom} #{userMB.investisseur.nom} !</h1>
-			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue et soyez prêt à investir.</p>
+			<h1>Hello, #{userMB.membre.prenom} #{userMB.membre.nom} !</h1>
+			<p style="color: blue; font-style: italic; font-weight: bold;">Bienvenue sur votre page membre de la société #{userMB.membre.societe.nom}.</p>
 			
-			<c:if test="#{userMB.investisseur.isApproved == 'WAITING'}">
+			<c:if test="#{userMB.membre.isApproved == 'WAITING'}">
 			<p style="color: red; font-weight: bold;">...Votre compte est en attente de validation.</p>
 			</c:if>
-			
 			<hr/>
 <!-- 			<p style="font-style: italic; font-weight: bold;">Nombre de Société à accréditer : </p> -->
 <!-- 			<p style="font-style: italic; font-weight: bold;">Nombre de profile à valider : </p> -->
 		</div>
 
-
-		<c:if test="#{userMB.investisseur.isApproved == 'APPROVED'}">
+		
 		<!-- Example row of columns -->
 		<div class="row">
+		<c:if test="#{userMB.membre.isApproved == 'APPROVED'}">
 			<div class="span4">
-				<h2>Mes contrats/Offres</h2>
-				<p>Consulter mes contrats et mes transactions. Rien de plus facile, il vous suffit de cliquer ici.</p>
+				<h2>Editer les infos #{userMB.membre.societe.nom}</h2>
+				<p>Consulter le profile de la société et modifier les informations de  société.</p>
 				<p>
-					<h:commandLink styleClass="btn btn-primary"
-							action="visual_contrat.xhtml?faces-redirect=true" value="GO"></h:commandLink>
+					<h:outputLink styleClass="btn btn-primary"
+						value="modif_societe.xhtml?faces-redirect=true">GO</h:outputLink>
 				</p>
 			</div>
+				</c:if>
 			<div class="span4">
-				<h2>Vendre mes titres</h2>
-				<p>Consulter la liste des sociétés et leur informations. Connaître le cours des sociétés afin de pouvoir investir.</p>
+				<h2>Mes Infos<br/></h2>
+				<p>Consulter le profile de la société et modifier les informations de  société.</p>
 				<p>
-					<h:commandLink styleClass="btn btn-primary"
-							action="vendre_titre.xhtml?faces-redirect=true" value="GO"></h:commandLink>
+					<h:outputLink styleClass="btn btn-primary"
+						value="modif_membre.xhtml?faces-redirect=true">GO</h:outputLink>
 				</p>
 			</div>
-			<div class="span4">
-				<h2>Achat de titres</h2>
-				<p>Consulter les différentes société et achetez des titres .
-				</p>
-				<p>
-					<h:commandLink styleClass="btn btn-primary"
-							action="#{navigationController.achat_vente()}" value="GO"></h:commandLink>
-				</p>
-			</div>
-		</div>
-		</c:if>
-		<div class="row">
-			<div class="span4">
-				<h2>Modifier mes infos</h2>
-				<p>Consulter mes informations ou modifier mes informations. Rien de plus facile, il vous suffit de cliquer ici.</p>
-				<p>
-					<h:commandLink styleClass="btn btn-primary"
-							action="#{navigationController.modif_invest()}" value="GO"></h:commandLink>
-				</p>
-			</div>
-			<c:if test="#{userMB.investisseur.isApproved == 'APPROVED'}">
 <!-- 			<div class="span4"> -->
-<!-- 				<h2>Creer une option de Ventre</h2> -->
-<!-- 				<p>Consulter la liste des sociétés et leur informations. Connaître le cours des sociétés afin de pouvoir investir.</p> -->
+<!-- 				<h2>Offre achat/ventes</h2> -->
+<!-- 				<p>Consulter les différentes offres de Achat/Vente de produits en cours. -->
+<!-- 				</p> -->
 <!-- 				<p> -->
 <!-- 					<a class="btn btn-primary" href="#">GO</a> -->
 <!-- 				</p> -->
 <!-- 			</div> -->
-<!-- 			<div class="span4"> -->
-<!-- 				<h2>Offres d'option</h2> -->
-<!-- 				<p>Consulter les différentes société et achetez des titres . -->
-<!-- 				</p> -->
-<!-- 				<p> -->
-<!-- 					<h:commandLink styleClass="btn btn-primary" -->
-<!-- 							action="#{navigationController.achat_vente()}" value="GO"></h:commandLink> -->
-<!-- 				</p> -->
-<!-- 			</div> -->
-			<div class="span4">
-				<h2>Consulter les offres </h2>
-				<p>Consulter les différentes offres et achetez des options.
-				</p>
-				<p>
-					<h:commandLink styleClass="btn btn-primary"
-							action="cons_offre.xhtml?faces-redirect=true" value="GO"></h:commandLink>
-				</p>
-			</div>
-			</c:if>
 		</div>
-		
+	
 	</div>
-	</h:form>
 	<!-- /container -->
 </h:body>
 <h:outputScript target="head">

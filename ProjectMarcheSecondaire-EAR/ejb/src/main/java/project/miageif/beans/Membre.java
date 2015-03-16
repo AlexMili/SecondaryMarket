@@ -16,6 +16,8 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.junit.Test;
+
 import project.miageif.beans.Utilisateur.Approval;
 
 
@@ -24,7 +26,7 @@ import project.miageif.beans.Utilisateur.Approval;
 @NamedQuery(name="Membre.findMembreByID", query="select u from Membre u where u.user.id=:id")
 public class Membre {
 	
-	public static final String FIND_BY_ID = "Investisseur.findMembreByID";
+	public static final String FIND_BY_ID = "Membre.findMembreByID";
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,7 +54,14 @@ public class Membre {
 	
 	private String nom;
 	private String prenom;
-	private String email;
+	private String adresse;
+	private String ville;
+	private String pays;
+	private int codepost;
+	private int telephone;
+	
+	public int getTelephone() { return this.telephone; }
+	public void setTelephone(int tel) { this.telephone = tel; }
 
 	public Membre() {}
 
@@ -100,13 +109,6 @@ public class Membre {
 		this.prenom = prenom;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 	public Approval getIsApproved() {
 		return isApproved;
@@ -114,6 +116,30 @@ public class Membre {
 	
 	public void setIsApproved(Approval isApproved) {
 		this.isApproved = isApproved;
+	}
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	public int getCodepost() {
+		return codepost;
+	}
+	public void setCodepost(int codepost) {
+		this.codepost = codepost;
+	}
+	public String getPays() {
+		return pays;
+	}
+	public void setPays(String pays) {
+		this.pays = pays;
 	}
 	
 	}

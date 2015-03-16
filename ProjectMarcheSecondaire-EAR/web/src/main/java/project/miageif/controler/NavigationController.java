@@ -26,6 +26,10 @@ public class NavigationController implements Serializable {
 	   return "refresh";
    }
    
+   public String modif_invest(){
+	   return "modif_invest";
+   }
+   
    public String pageLogin(){
 	      return "login";
 	   }
@@ -41,23 +45,22 @@ public class NavigationController implements Serializable {
 	      return "validator";
    }
    
-   public String soc_validator(){
-	      return "soc_validator";
+   public String achat_vente(){
+	      return "achat_vente";
 }
    
+   public String create_soc(){
+	   return "creer_entreprise.xhtml";
+   }
    
-//   public String showPage(){
-//      if(pageId == null){
-//         return "accueil";
-//      }
-//      if(pageId.equals("login")){
-//         return "login";
-//      }else if(pageId.equals("inscriptionSociete")){
-//         return "inscriptionSociete";
-//      }else{
-//         return "acceuil";
-//      }
-//   }
+   public String soc_validator(){
+	      return "soc_validator";
+   }
+   
+   public String acceuilInvest(){
+	   return "investisseur.xhtml";
+   }
+ 
    
    public String getPageId() {
 	      return pageId;

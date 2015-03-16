@@ -1,17 +1,26 @@
 package project.miageif.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import project.miageif.beans.Utilisateur.Approval;
 
@@ -25,12 +34,16 @@ public class Investisseur {
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id_investisseur")
 	private Integer id;
 	
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Contrat> contrats = new ArrayList<Contrat>();
 
 	@OneToOne
 	@JoinColumn(name="Id_Utilisateur")
@@ -42,7 +55,15 @@ public class Investisseur {
 	
 	private String nom;
 	private String prenom;
-	private String email;
+	private String adresse;
+	private String ville;
+	private String pays;
+	private int codepost;
+	private double solde=0;
+	private int telephone;
+	
+	public int getTelephone() { return this.telephone; }
+	public void setTelephone(int tel) { this.telephone = tel; }
 
 	public Investisseur() {}
 
@@ -90,14 +111,6 @@ public class Investisseur {
 		this.prenom = prenom;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
 	public Approval getIsApproved() {
 		return isApproved;
 	}
@@ -106,6 +119,51 @@ public class Investisseur {
 		this.isApproved = p;
 	}
 	
+	public List<Contrat> getContrats() {
+		return contrats;
+	}
+	
+	public void setContrats(List<Contrat> contrats) {
+		this.contrats = contrats;
+	}
+
+	public double getSolde() {
+		return solde;
+	}
+
+	public void setSolde(double solde) {
+		this.solde = solde;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public int getCodepost() {
+		return codepost;
+	}
+
+	public void setCodepost(int codepost) {
+		this.codepost = codepost;
+	}
+	public String getPays() {
+		return pays;
+	}
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
 	
 	}
 

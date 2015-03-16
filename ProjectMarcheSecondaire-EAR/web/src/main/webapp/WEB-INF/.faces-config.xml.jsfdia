@@ -8,9 +8,9 @@
     NAME="output" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="inscriptionSociete::#pages#public#inscriptionSociete.xhtml"
-    NAME="output1" PATH="/pages/public/inscriptionSociete.xhtml"
-    TARGET="rules:#pages#public#inscriptionSociete.xhtml"
+    ID="inscriptionSociete::#pages#public#inscription_societe_membre.xhtml"
+    NAME="output1" PATH="/pages/public/inscription_societe_membre.xhtml"
+    TARGET="rules:#pages#public#inscription_societe_membre.xhtml"
     TITLE="inscriptionSociete" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="inscriptionInvestisseur::#pages#public#inscriptionInvestisseur.xhtml"
@@ -40,6 +40,10 @@
     PATH="/pages/protected/investisseur/investisseur.xhtml"
     TARGET="rules:#pages#protected#investisseur#investisseur.xhtml"
     TITLE="investisseur" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="membre::#pages#protected#membre#membre.xhtml" NAME="output4"
+    PATH="/pages/protected/membre/membre.xhtml"
+    TARGET="rules:#pages#protected#membre#membre.xhtml" TITLE="membre" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#protected#admin#configuration.xhtml"
@@ -85,6 +89,12 @@
    <PROCESS-ITEM-OUTPUT ID="login::#pages#public#login.xhtml"
     NAME="output1" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="achat_vente::#pages#protected#investisseur#achat_vente.xhtml"
+    NAME="output2"
+    PATH="/pages/protected/investisseur/achat_vente.xhtml"
+    TARGET="rules:#pages#protected#investisseur#achat_vente.xhtml"
+    TITLE="achat_vente" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
@@ -97,6 +107,18 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
     NAME="output" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="acceuil::#pages#protected#investisseur#investisseur.xhtml"
+    NAME="output1"
+    PATH="/pages/protected/investisseur/investisseur.xhtml"
+    TARGET="rules:#pages#protected#investisseur#investisseur.xhtml"
+    TITLE="acceuil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="modif_invest::#pages#protected#investisseur#modif_invest.xhtml"
+    NAME="output2"
+    PATH="/pages/protected/investisseur/modif_invest.xhtml"
+    TARGET="rules:#pages#protected#investisseur#modif_invest.xhtml"
+    TITLE="modif_invest" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
@@ -121,8 +143,26 @@
     TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#public#inscriptionSociete.xhtml"
-  PATH="/pages/public/inscriptionSociete.xhtml" SHAPE="1072,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#public#inscription_societe_membre.xhtml"
+  PATH="/pages/public/inscription_societe_membre.xhtml"
+  SHAPE="1072,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#public#inscription_societe_membre.xhtml:0"
+   NAME="item" PATH="/pages/public/inscription_societe_membre.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="accueil::#pages#public#accueil.xhtml"
+    NAME="output" PATH="/pages/public/accueil.xhtml"
+    TARGET="rules:#pages#public#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="login::#pages#public#login.xhtml"
+    NAME="output1" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="create_soc::#pages#public#creer_entreprise.xhtml" NAME="output2"
+    PATH="/pages/public/creer_entreprise.xhtml"
+    TARGET="rules:#pages#public#creer_entreprise.xhtml"
+    TITLE="create_soc" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#protected#admin#soc_validator.xhtml"
   PATH="/pages/protected/admin/soc_validator.xhtml" SHAPE="336,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#pages#protected#admin#soc_validator.xhtml:0"
@@ -140,6 +180,89 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
     NAME="output2" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#protected#membre#membre.xhtml"
+  PATH="/pages/protected/membre/membre.xhtml" SHAPE="624,257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#protected#membre#membre.xhtml:0"
+   NAME="item" PATH="/pages/protected/membre/membre.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="acceuil::#pages#protected#admin#configuration.xhtml"
+    NAME="output" PATH="/pages/protected/admin/configuration.xhtml"
+    TARGET="rules:#pages#protected#admin#configuration.xhtml"
+    TITLE="acceuil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="refresh::#pages#protected#admin#mb_inv_validator.xhtml"
+    NAME="output1" PATH="/pages/protected/admin/mb_inv_validator.xhtml"
+    TARGET="rules:#pages#protected#admin#mb_inv_validator.xhtml"
+    TITLE="refresh" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
+    NAME="output2" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#investisseur#achat_vente.xhtml"
+  PATH="/pages/protected/investisseur/achat_vente.xhtml"
+  SHAPE="1344,273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#protected#investisseur#achat_vente.xhtml:0"
+   NAME="item" PATH="/pages/protected/investisseur/achat_vente.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
+    NAME="output" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="acceuil::#pages#protected#investisseur#investisseur.xhtml"
+    NAME="output1"
+    PATH="/pages/protected/investisseur/investisseur.xhtml"
+    TARGET="rules:#pages#protected#investisseur#investisseur.xhtml"
+    TITLE="acceuil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#public#creer_entreprise.xhtml"
+  PATH="/pages/public/creer_entreprise.xhtml" SHAPE="1600,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#public#creer_entreprise.xhtml:0"
+   NAME="item" PATH="/pages/public/creer_entreprise.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="accueil::#pages#public#accueil.xhtml"
+    NAME="output" PATH="/pages/public/accueil.xhtml"
+    TARGET="rules:#pages#public#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="login::#pages#public#login.xhtml"
+    NAME="output1" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="create_soc::#pages#public#creer_entreprise.xhtml" NAME="output2"
+    PATH="/pages/public/creer_entreprise.xhtml"
+    TARGET="rules:#pages#public#creer_entreprise.xhtml"
+    TITLE="create_soc" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="soc_creer::#pages#public#inscription_societe_membre.xhtml"
+    NAME="output3" PATH="/pages/public/inscription_societe_membre.xhtml"
+    TARGET="rules:#pages#public#inscription_societe_membre.xhtml"
+    TITLE="soc_creer" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="achat_vente::#pages#protected#investisseur#achat_vente.xhtml"
+    NAME="output4"
+    PATH="/pages/protected/investisseur/achat_vente.xhtml"
+    TARGET="rules:#pages#protected#investisseur#achat_vente.xhtml"
+    TITLE="achat_vente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#investisseur#modif_invest.xhtml"
+  PATH="/pages/protected/investisseur/modif_invest.xhtml"
+  SHAPE="912,625,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#pages#protected#investisseur#modif_invest.xhtml:0"
+   NAME="item" PATH="/pages/protected/investisseur/modif_invest.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#pages#public#login.xhtml"
+    NAME="output" PATH="/pages/public/login.xhtml"
+    TARGET="rules:#pages#public#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="acceuilInvest::#pages#protected#investisseur#investisseur.xhtml"
+    NAME="output1"
+    PATH="/pages/protected/investisseur/investisseur.xhtml"
+    TARGET="rules:#pages#protected#investisseur#investisseur.xhtml"
+    TITLE="acceuilInvest" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
