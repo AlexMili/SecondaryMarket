@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import project.miageif.beans.Administrateur;
+import project.miageif.beans.Investisseur;
 import project.miageif.beans.Societe;
 import project.miageif.beans.Utilisateur;
 import project.miageif.dao.GenericDAO;
@@ -31,7 +32,8 @@ public class SocieteTest{
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
-            .addClasses(Societe.class,SocieteService.class, SocieteServiceImp.class, SocieteDAO.class, GenericDAO.class)
+            .addClasses(Investisseur.class,Utilisateur.class,Administrateur.class,
+            		Societe.class,SocieteService.class, SocieteServiceImp.class, SocieteDAO.class, GenericDAO.class)
             .addAsResource("hibernate.cfg.xml", "hibernate.cfg.xml") 
             .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml") 
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

@@ -17,28 +17,36 @@ import org.junit.runner.RunWith;
 
 import project.miageif.beans.Administrateur;
 import project.miageif.beans.Investisseur;
+import project.miageif.beans.Membre;
 import project.miageif.beans.Societe;
 import project.miageif.beans.Utilisateur;
+import project.miageif.beans.Utilisateur.Approval;
 import project.miageif.dao.GenericDAO;
 import project.miageif.dao.implement.AdministrateurDAO;
 import project.miageif.dao.implement.InvestisseurDAO;
+import project.miageif.dao.implement.MembreDAO;
 import project.miageif.dao.implement.SocieteDAO;
 import project.miageif.services.AdministrateurService;
 import project.miageif.services.InvestisseurService;
+import project.miageif.services.MembreService;
 import project.miageif.services.SocieteService;
+import project.miageif.services.UtilisateurService;
 import project.miageif.services.implement.AdministrateurServiceImp;
 import project.miageif.services.implement.InvestisseurServiceImp;
+import project.miageif.services.implement.MembreServiceImp;
 import project.miageif.services.implement.SocieteServiceImp;
 
 @RunWith(Arquillian.class)
-public class InvertisseurTest {
+public class MembreTest {
 	@Deployment
 	public static JavaArchive createDeployment() {
 		return ShrinkWrap
 				.create(JavaArchive.class, "test.jar")
-				.addClasses(Investisseur.class, Investisseur.class,
-						InvestisseurService.class,
-						InvestisseurServiceImp.class, InvestisseurDAO.class,
+				.addClasses(Investisseur.class, Utilisateur.class,
+						Administrateur.class, Investisseur.class, Membre.class,
+						Societe.class, UtilisateurService.class,
+						SocieteService.class, MembreService.class,
+						MembreServiceImp.class, MembreDAO.class,
 						GenericDAO.class)
 				.addAsResource("hibernate.cfg.xml", "hibernate.cfg.xml")
 				.addAsResource("META-INF/persistence.xml",
@@ -47,57 +55,50 @@ public class InvertisseurTest {
 	}
 
 	@Inject
-	Investisseur investisseur;
+	Membre member;
 
 	@EJB
-	InvestisseurService investiServ;
-
-	/**
-	 * @Test public void testAllSocieteApprouvees() { //Query test =
-	 *       societeServ.getAllSocieteApprouvees();
-	 *       //Assert.assertNotEquals(null, test); }
-	 **/
+	MembreService memberServ;
 
 	@Test
-	public void testCreate() {
-		Investisseur createinvestisseur = new Investisseur();
-		// createinvestisseur.setUser();
-		createinvestisseur.setNom("zhang");
-		createinvestisseur.setEmail("societe@awesome.com");
-		createinvestisseur.setPrenom("yujuan");
-		investiServ.createInvest(createinvestisseur);
-
-		List<Investisseur> newcreateinvestisseur = investiServ.findAll();
-
-		Assert.assertNotEquals(null, newcreateinvestisseur);
-		Assert.assertEquals("yujuan",
-				((Investisseur) createinvestisseur).getPrenom());
+	public void findMemberByID() {
+		member = memberServ.findMembreByID(3);
+		Assert.assertEquals("PHAM", member.getPrenom());
+		Assert.assertEquals("Hieu", member.getNom());
 	}
+	@Test
+	public void testCreatemembre() {
+		Membre createmembre = new Membre();
+		// createinvestisseur.setUser();
+		createmembre.setNom("Mili");
+		createmembre.setEmail("alex@awesome.com");
+		 (createmembre).setPrenom("Alex");
+		memberServ.createMembre(createmembre);
 
+		List<Membre> newcreatemembre = memberServ.findAll();
+
+		Assert.assertNotEquals(null, newcreatemembre);
+		Assert.assertEquals("Alex",
+				((Membre) createmembre).getPrenom());
+	}
+	
 	@Test
 	public void testInvestisseurUpdate() {
-		Investisseur createinvestisseur = new Investisseur();
+		Membre createmembre = new Membre();
 		// createinvestisseur.setUser();
-		createinvestisseur.setNom("zhang");
-		createinvestisseur.setEmail("societe@awesome.com");
-		createinvestisseur.setPrenom("yujuan");
-		investiServ.createInvest(createinvestisseur);
+		createmembre.setNom("zhang");
+		createmembre.setEmail("societe@awesome.com");
+		createmembre.setPrenom("yujuan");
+		memberServ.createMembre(createmembre);
 
-		createinvestisseur.setNom("Dalma");
-		investiServ.updateInvest(createinvestisseur);
-		List<Investisseur> newcreateinvestisseur = investiServ.findAll();
+		createmembre.setNom("Change");
+		memberServ.updateMembre(createmembre);
+		List<Membre> newcreatemembre = memberServ.findAll();
 
-		Assert.assertNotEquals(null, createinvestisseur);
-		Assert.assertEquals("Dalma",
-				((Investisseur) createinvestisseur).getNom());
+		Assert.assertNotEquals(null, newcreatemembre);
+		Assert.assertEquals("Change",
+				((Membre) createmembre).getNom());
 
-	}
-
-	@Test
-	public void findInvestByID() {
-		investisseur = investiServ.findInvestByID(3);
-		Assert.assertEquals("yu", investisseur.getNom());
-		Assert.assertEquals("yu", investisseur.getUser().getLogin());
 	}
 
 }

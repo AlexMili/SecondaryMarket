@@ -16,10 +16,12 @@ public class UtilisateurServiceImp implements UtilisateurService {
 	@EJB
 	private UtilisateurDAO user;
 
+	@Override
 	public Utilisateur findUserByLoginPass(String login, String pass) {
 		return user.findUserByLoginPass(login, pass);
 	}
 
+	@Override
 	public Utilisateur userUpdate(Utilisateur u) {
 		return user.userUpdate(u);
 	}

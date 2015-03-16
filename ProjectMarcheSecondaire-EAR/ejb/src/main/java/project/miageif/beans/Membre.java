@@ -24,7 +24,7 @@ import project.miageif.beans.Utilisateur.Approval;
 @NamedQuery(name="Membre.findMembreByID", query="select u from Membre u where u.user.id=:id")
 public class Membre {
 	
-	public static final String FIND_BY_ID = "Investisseur.findMembreByID";
+	public static final String FIND_BY_ID = "Membre.findMembreByID";
 	
 	@Id @NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)

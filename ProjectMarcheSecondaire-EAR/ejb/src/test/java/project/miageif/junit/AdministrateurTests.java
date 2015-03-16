@@ -19,7 +19,7 @@ import project.miageif.dao.GenericDAO;
 import project.miageif.dao.implement.AdministrateurDAO;
 import project.miageif.services.AdministrateurService;
 import project.miageif.services.implement.AdministrateurServiceImp;
-
+/*DONE*/
 @RunWith(Arquillian.class)
 public class AdministrateurTests{
     @Deployment
@@ -40,10 +40,12 @@ public class AdministrateurTests{
     
     @Test
     public void findAdminByID() {
-		admin = adminServ.findAdminByID(0);
-		Assert.assertEquals("DALMAT", admin.getNom());
+		admin = adminServ.findAdminByID(3);
+		Assert.assertNotEquals(null, admin);
+		Assert.assertEquals("zhang", admin.getNom());
+		/**Assert.assertEquals("yujuan", admin.getPrenom());**/
 		
-		Assert.assertEquals("yann", admin.getUser().getLogin());
+		Assert.assertEquals("yu", admin.getUser().getLogin());
 	}
     
 }
