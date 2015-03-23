@@ -53,7 +53,7 @@ public class Societe {
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Membre> menbre = new ArrayList<Membre>();
 	
-	@NotNull @Column(precision = 2)
+	@Column(precision = 2)
 	private double prixTitre;
 	
 	@Enumerated(EnumType.ORDINAL)

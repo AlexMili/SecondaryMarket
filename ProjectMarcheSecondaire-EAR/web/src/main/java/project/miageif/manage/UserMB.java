@@ -226,10 +226,12 @@ public class UserMB {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		societe = offre.getContrat().getSociete();
+		contrat = offre.getContrat();
+		Investisseur inv =  offre.getContrat().getUser();
 		offre.setEtat(Etat_Offre.VENDUE);
 		offre.setId_acheteur(investisseur.getId());
-		offre.getContrat().getUser().setSolde(offre.getContrat().getUser().getSolde()+offre.getPrix()*offre.getQuantiteTitre());
-		offre.getContrat().setQuantite(offre.getContrat().getQuantite()-offre.getQuantiteTitre());
+		inv.setSolde(offre.getContrat().getUser().getSolde()+offre.getPrix()*offre.getQuantiteTitre());
+		contrat.setQuantite(offre.getContrat().getQuantite()-offre.getQuantiteTitre());
 		offreService.updateOffre(offre);
 		Contrat c = new Contrat();
 		c.setDate(new Date());
@@ -239,7 +241,8 @@ public class UserMB {
 		contratService.createContrat(c);
 		investisseur.setSolde(investisseur.getSolde()-offre.getQuantiteTitre()*offre.getPrix());
 		investisseur.getContrats().add(c);
-		investService.updateInvest(investisseur);
+		session.update(inv);
+		session.update(contrat);
 		session.update(investisseur);
 		session.update(societe);
 		session.getTransaction().commit();

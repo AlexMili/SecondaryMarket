@@ -88,6 +88,7 @@ body {
 	<center>
 		<h:form>
 			<h2 class="text-info text-center">Mes contrats</h2>
+			<p class="label"> Mon solde : #{userMB.investisseur.solde} € </p>
 			<hr></hr>
 			<h4 class="text-success text-center">Choix du contrat</h4>
 			<br />
@@ -153,7 +154,7 @@ body {
 											<td><h:outputLabel value="#{item.date}" /></td>
 											<td><h:outputLabel value="#{item.datedispo}" /></td>
 											<td><h:outputLabel 
-													value="#{(item.etat=='VENDUE')? 'VENDUE' : (userMB.contrat.quantite>item.quantiteTitre)?'EN COURS DE VENTE':'NON VALIDE' }" /></td>
+													value="#{(item.etat=='VENDUE')? 'VENDUE' : (userMB.contrat.quantite>=item.quantiteTitre)?'EN COURS DE VENTE':'NON VALIDE' }" /></td>
 										</tr>
 									</c:forEach>
 								</tbody>

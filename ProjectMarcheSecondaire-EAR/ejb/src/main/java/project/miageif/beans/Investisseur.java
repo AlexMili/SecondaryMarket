@@ -59,6 +59,7 @@ public class Investisseur {
 	private String ville;
 	private String pays;
 	private int codepost;
+	@Column(precision = 2)
 	private double solde=0;
 	private int telephone;
 	

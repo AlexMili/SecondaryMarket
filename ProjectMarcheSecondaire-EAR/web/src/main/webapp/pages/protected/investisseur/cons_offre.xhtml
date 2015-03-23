@@ -97,7 +97,7 @@ body {
 				<!-- 					<f:selectItems value="#{userMB.listSociete}" var="c" -->
 				<!-- 						itemLabel="#{c.nom}" itemValue="#{c.nom}" /> -->
 				<c:forEach var="item" items="#{userMB.offres}">
-					<c:if test="#{userMB.investisseur.id!=item.contrat.user.id and item.contrat.quantite>item.quantiteTitre}">
+					<c:if test="#{userMB.investisseur.id!=item.contrat.user.id and item.contrat.quantite>=item.quantiteTitre}">
 						<f:selectItem itemValue="#{item.id}"
 							itemLabel="Offre n° #{item.id} sur entreprise #{item.contrat.societe.nom} 
 							| Enchère : #{(item.type=='ENCHERE_OUI')? 'OUI' : 'NON'} | Montant : #{item.quantiteTitre*item.prix} € | Vendeur : #{item.contrat.user.nom.toUpperCase()} #{item.contrat.user.prenom}" />
@@ -168,12 +168,12 @@ body {
 						<h:panelGroup rendered="#{(userMB.offre.quantiteTitre*userMB.offre.prix>userMB.investisseur.solde)}">
 							<h1 class="label label-important" >Vous devez approvisionner vôtre compte</h1>
 						</h:panelGroup>
-						<h:panelGroup rendered="#{userMB.offre.type=='ENCHERE_NON' and userMB.offre.etat!='VENDUE' and (userMB.investisseur.solde>userMB.offre.quantiteTitre*userMB.offre.prix)}">
+						<h:panelGroup rendered="#{userMB.offre.type=='ENCHERE_NON' and userMB.offre.etat!='VENDUE' and (userMB.investisseur.solde>=userMB.offre.quantiteTitre*userMB.offre.prix)}">
 							<h:commandButton styleClass="btn btn-large btn-primary"
 								value="Acheter" action="#{userMB.transaction()}" />
 						</h:panelGroup>
 
-						<h:panelGroup rendered="#{userMB.offre.type=='ENCHERE_OUI' and userMB.offre.etat!='VENDUE' and (userMB.investisseur.solde>userMB.offre.quantiteTitre*userMB.offre.prix)}">
+						<h:panelGroup rendered="#{userMB.offre.type=='ENCHERE_OUI' and userMB.offre.etat!='VENDUE' and (userMB.investisseur.solde>=userMB.offre.quantiteTitre*userMB.offre.prix)}">
 							<br />
 							<h1 class="label label-warning">
 								<h:outputLabel value="#{userMB.offre.plusvalue}  €" />
